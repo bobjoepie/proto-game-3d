@@ -1,0 +1,1852 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3029003511021356597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8432839745827230677}
+  - component: {fileID: 4236957389297036366}
+  - component: {fileID: 6590294645203227600}
+  - component: {fileID: 4899596170259365548}
+  - component: {fileID: 565636850096453967}
+  m_Layer: 0
+  m_Name: 10x12_Bridge_Stairs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8432839745827230677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029003511021356597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4236957389297036366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029003511021356597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1508455596, guid: 18036820e4eaef34a9ef9afc1a245ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editableMesh_:
+    editMeshVersion: 1
+    mainPolygons_:
+    - vertices_:
+      - pos: {x: 9, y: 3, z: 10}
+        uv: {x: -8, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 3, z: 0}
+        uv: {x: -8, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 0}
+        uv: {x: -9, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 10}
+        uv: {x: -9, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -3
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692677
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 1.2, z: 10}
+        uv: {x: 1, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1.2, z: 0}
+        uv: {x: 1, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.2, z: 0}
+        uv: {x: 0, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.2, z: 10}
+        uv: {x: 0, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -1.2
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692575
+      groupID: 0
+    - vertices_:
+      - pos: {x: 1, y: 1.2, z: 10}
+        uv: {x: 0, y: 2.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.4000001, z: 10}
+        uv: {x: 0, y: 2.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.4000001, z: 0}
+        uv: {x: 10, y: 2.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.2, z: 0}
+        uv: {x: 10, y: 2.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 1
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692578
+      groupID: 0
+    - vertices_:
+      - pos: {x: 1, y: 1.4000001, z: 10}
+        uv: {x: 0, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.4000001, z: 0}
+        uv: {x: 0, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.4000001, z: 0}
+        uv: {x: -1, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.4000001, z: 10}
+        uv: {x: -1, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -1.4000001
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692581
+      groupID: 0
+    - vertices_:
+      - pos: {x: 2, y: 1.4000001, z: 10}
+        uv: {x: 0, y: 2.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.5999999, z: 10}
+        uv: {x: 0, y: 2.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.5999999, z: 0}
+        uv: {x: 10, y: 2.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.4000001, z: 0}
+        uv: {x: 10, y: 2.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 2
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692584
+      groupID: 0
+    - vertices_:
+      - pos: {x: 2, y: 1.5999999, z: 10}
+        uv: {x: -1, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.5999999, z: 0}
+        uv: {x: -1, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.5999999, z: 0}
+        uv: {x: -2, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.5999999, z: 10}
+        uv: {x: -2, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -1.5999999
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692587
+      groupID: 0
+    - vertices_:
+      - pos: {x: 3, y: 1.5999999, z: 10}
+        uv: {x: 0, y: 2.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.8, z: 10}
+        uv: {x: 0, y: 2.8}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.8, z: 0}
+        uv: {x: 10, y: 2.8}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.5999999, z: 0}
+        uv: {x: 10, y: 2.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 3
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692590
+      groupID: 0
+    - vertices_:
+      - pos: {x: 3, y: 1.8, z: 10}
+        uv: {x: -2, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.8, z: 0}
+        uv: {x: -2, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 1.8, z: 0}
+        uv: {x: -3, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 1.8, z: 10}
+        uv: {x: -3, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -1.8
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692593
+      groupID: 0
+    - vertices_:
+      - pos: {x: 4, y: 1.8, z: 10}
+        uv: {x: 0, y: 2.8}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 2, z: 10}
+        uv: {x: 0, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 2, z: 0}
+        uv: {x: 10, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 1.8, z: 0}
+        uv: {x: 10, y: 2.8}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 4
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692596
+      groupID: 0
+    - vertices_:
+      - pos: {x: 4, y: 2, z: 10}
+        uv: {x: -3, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 2, z: 0}
+        uv: {x: -3, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2, z: 0}
+        uv: {x: -4, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2, z: 10}
+        uv: {x: -4, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -2
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692599
+      groupID: 0
+    - vertices_:
+      - pos: {x: 5, y: 2, z: 10}
+        uv: {x: 0, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2.2, z: 10}
+        uv: {x: 0, y: 3.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2.2, z: 0}
+        uv: {x: 10, y: 3.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2, z: 0}
+        uv: {x: 10, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 5
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692602
+      groupID: 0
+    - vertices_:
+      - pos: {x: 5, y: 2.2, z: 10}
+        uv: {x: -4, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2.2, z: 0}
+        uv: {x: -4, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.2, z: 0}
+        uv: {x: -5, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.2, z: 10}
+        uv: {x: -5, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -2.2
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692605
+      groupID: 0
+    - vertices_:
+      - pos: {x: 6, y: 2.2, z: 10}
+        uv: {x: 0, y: 3.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.4, z: 10}
+        uv: {x: 0, y: 3.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.4, z: 0}
+        uv: {x: 10, y: 3.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.2, z: 0}
+        uv: {x: 10, y: 3.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 6
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692608
+      groupID: 0
+    - vertices_:
+      - pos: {x: 6, y: 2.4, z: 10}
+        uv: {x: -5, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.4, z: 0}
+        uv: {x: -5, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.4, z: 0}
+        uv: {x: -6, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.4, z: 10}
+        uv: {x: -6, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -2.4
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692611
+      groupID: 0
+    - vertices_:
+      - pos: {x: 7, y: 2.4, z: 10}
+        uv: {x: 0, y: 3.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.6, z: 10}
+        uv: {x: 0, y: 3.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.6, z: 0}
+        uv: {x: 10, y: 3.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.4, z: 0}
+        uv: {x: 10, y: 3.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 7
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692614
+      groupID: 0
+    - vertices_:
+      - pos: {x: 7, y: 2.6, z: 10}
+        uv: {x: -6, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.6, z: 0}
+        uv: {x: -6, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.6, z: 0}
+        uv: {x: -7, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.6, z: 10}
+        uv: {x: -7, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -2.6
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692617
+      groupID: 0
+    - vertices_:
+      - pos: {x: 8, y: 2.6, z: 10}
+        uv: {x: 0, y: 3.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.8000002, z: 10}
+        uv: {x: 0, y: 3.8000002}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.8000002, z: 0}
+        uv: {x: 10, y: 3.8000002}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.6, z: 0}
+        uv: {x: 10, y: 3.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 8
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692620
+      groupID: 0
+    - vertices_:
+      - pos: {x: 8, y: 2.8000002, z: 10}
+        uv: {x: -7, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.8000002, z: 0}
+        uv: {x: -7, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 2.8000002, z: 0}
+        uv: {x: -8, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 2.8000002, z: 10}
+        uv: {x: -8, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 1, z: 0}
+        distance_: -2.8000002
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692623
+      groupID: 0
+    - vertices_:
+      - pos: {x: 9, y: 2.8000002, z: 10}
+        uv: {x: 0, y: 3.8000002}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 3, z: 10}
+        uv: {x: 0, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 3, z: 0}
+        uv: {x: 10, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 2.8000002, z: 0}
+        uv: {x: 10, y: 3.8000002}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: 9
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692626
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 0, z: 10}
+        uv: {x: 1, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 0, z: 0}
+        uv: {x: 1, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 0, z: 0}
+        uv: {x: -9, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 0, z: 10}
+        uv: {x: -9, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: -1, z: 0}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1692641
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 1, z: 0}
+        uv: {x: -1, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: 0}
+        uv: {x: -1, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 5, z: 0}
+        uv: {x: 9, y: 6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 0}
+        uv: {x: 9, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 0, z: 1}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1719598
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 5, z: 10}
+        uv: {x: 9, y: 6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 10}
+        uv: {x: 9, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: 10}
+        uv: {x: -1, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: 10}
+        uv: {x: -1, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 0, z: -1}
+        distance_: 10
+      matID_: 0
+      flags_: 0
+      instanceID_: 1719849
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 2, z: 10}
+        uv: {x: -9, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 10}
+        uv: {x: -9, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 3, z: 10}
+        uv: {x: -8, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 2.8000002, z: 10}
+        uv: {x: -8, y: 3.8000002}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.8000002, z: 10}
+        uv: {x: -7, y: 3.8000002}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.6, z: 10}
+        uv: {x: -7, y: 3.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.6, z: 10}
+        uv: {x: -6, y: 3.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.4, z: 10}
+        uv: {x: -6, y: 3.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.4, z: 10}
+        uv: {x: -5, y: 3.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.2, z: 10}
+        uv: {x: -5, y: 3.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2.2, z: 10}
+        uv: {x: -4, y: 3.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2, z: 10}
+        uv: {x: -4, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 2, z: 10}
+        uv: {x: -3, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 1.8, z: 10}
+        uv: {x: -3, y: 2.8}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.8, z: 10}
+        uv: {x: -2, y: 2.8}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.5999999, z: 10}
+        uv: {x: -2, y: 2.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.5999999, z: 10}
+        uv: {x: -1, y: 2.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.4000001, z: 10}
+        uv: {x: -1, y: 2.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.4000001, z: 10}
+        uv: {x: 0, y: 2.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.2, z: 10}
+        uv: {x: 0, y: 2.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1.2, z: 10}
+        uv: {x: 1, y: 2.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 0, z: 10}
+        uv: {x: 1, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 4
+      - i0_: 4
+        i1_: 5
+      - i0_: 5
+        i1_: 6
+      - i0_: 6
+        i1_: 7
+      - i0_: 7
+        i1_: 8
+      - i0_: 8
+        i1_: 9
+      - i0_: 9
+        i1_: 10
+      - i0_: 10
+        i1_: 11
+      - i0_: 11
+        i1_: 12
+      - i0_: 12
+        i1_: 13
+      - i0_: 13
+        i1_: 14
+      - i0_: 14
+        i1_: 15
+      - i0_: 15
+        i1_: 16
+      - i0_: 16
+        i1_: 17
+      - i0_: 17
+        i1_: 18
+      - i0_: 18
+        i1_: 19
+      - i0_: 19
+        i1_: 20
+      - i0_: 20
+        i1_: 21
+      - i0_: 21
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 0, z: 1}
+        distance_: -10
+      matID_: 0
+      flags_: 0
+      instanceID_: 1730048
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 0, z: 10}
+        uv: {x: 1, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 0, z: 10}
+        uv: {x: -9, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 2, z: 10}
+        uv: {x: -9, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 0, z: 1}
+        distance_: -10
+      matID_: 0
+      flags_: 0
+      instanceID_: 1730045
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 5, z: 11}
+        uv: {x: 9, y: 6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 11}
+        uv: {x: 9, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: 11}
+        uv: {x: -1, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: 11}
+        uv: {x: -1, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 0, z: 1}
+        distance_: -11
+      matID_: 0
+      flags_: 0
+      instanceID_: 1730497
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 3, z: 11}
+        uv: {x: -1, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 5, z: 11}
+        uv: {x: 9, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 5, z: 10}
+        uv: {x: 9, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: 10}
+        uv: {x: -1, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -0.19611613, y: 0.9805807, z: 0}
+        distance_: -2.941742
+      matID_: 0
+      flags_: 0
+      instanceID_: 1730501
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 0, z: 10}
+        uv: {x: 1, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 2, z: 10}
+        uv: {x: -9, y: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 11}
+        uv: {x: -9, y: -1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: 11}
+        uv: {x: 1, y: -1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0.14002801, y: -0.70014006, z: 0.70014006}
+        distance_: -7.0014005
+      matID_: 0
+      flags_: 0
+      instanceID_: 1730554
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 0, z: 0}
+        uv: {x: -1, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1.2, z: 0}
+        uv: {x: -1, y: 2.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.2, z: 0}
+        uv: {x: 0, y: 2.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 1, y: 1.4000001, z: 0}
+        uv: {x: 0, y: 2.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.4000001, z: 0}
+        uv: {x: 1, y: 2.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 2, y: 1.5999999, z: 0}
+        uv: {x: 1, y: 2.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.5999999, z: 0}
+        uv: {x: 2, y: 2.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 3, y: 1.8, z: 0}
+        uv: {x: 2, y: 2.8}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 1.8, z: 0}
+        uv: {x: 3, y: 2.8}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 4, y: 2, z: 0}
+        uv: {x: 3, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2, z: 0}
+        uv: {x: 4, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 5, y: 2.2, z: 0}
+        uv: {x: 4, y: 3.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.2, z: 0}
+        uv: {x: 5, y: 3.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 6, y: 2.4, z: 0}
+        uv: {x: 5, y: 3.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.4, z: 0}
+        uv: {x: 6, y: 3.4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 7, y: 2.6, z: 0}
+        uv: {x: 6, y: 3.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.6, z: 0}
+        uv: {x: 7, y: 3.6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 8, y: 2.8000002, z: 0}
+        uv: {x: 7, y: 3.8000002}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 2.8000002, z: 0}
+        uv: {x: 8, y: 3.8000002}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 9, y: 3, z: 0}
+        uv: {x: 8, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 0}
+        uv: {x: 9, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 2, z: 0}
+        uv: {x: 9, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 4
+      - i0_: 4
+        i1_: 5
+      - i0_: 5
+        i1_: 6
+      - i0_: 6
+        i1_: 7
+      - i0_: 7
+        i1_: 8
+      - i0_: 8
+        i1_: 9
+      - i0_: 9
+        i1_: 10
+      - i0_: 10
+        i1_: 11
+      - i0_: 11
+        i1_: 12
+      - i0_: 12
+        i1_: 13
+      - i0_: 13
+        i1_: 14
+      - i0_: 14
+        i1_: 15
+      - i0_: 15
+        i1_: 16
+      - i0_: 16
+        i1_: 17
+      - i0_: 17
+        i1_: 18
+      - i0_: 18
+        i1_: 19
+      - i0_: 19
+        i1_: 20
+      - i0_: 20
+        i1_: 21
+      - i0_: 21
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 0, z: -1}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1733185
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 2, z: 0}
+        uv: {x: 9, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 0, z: 0}
+        uv: {x: 9, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 0, z: 0}
+        uv: {x: -1, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 0, z: -1}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1733182
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 3, z: -1}
+        uv: {x: -9, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 5, z: -1}
+        uv: {x: -9, y: 6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: -1}
+        uv: {x: 1, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: -1}
+        uv: {x: 1, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 3
+      - i0_: 3
+        i1_: 2
+      - i0_: 2
+        i1_: 1
+      - i0_: 1
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0, y: 0, z: -1}
+        distance_: -1
+      matID_: 0
+      flags_: 0
+      instanceID_: 1733825
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 2, z: 0}
+        uv: {x: -9, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 0, z: 0}
+        uv: {x: 1, y: 10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: -1}
+        uv: {x: 1, y: 11}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: -1}
+        uv: {x: -9, y: 11}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 0.14002801, y: -0.70014006, z: -0.70014006}
+        distance_: -0.000000029802322
+      matID_: 0
+      flags_: 0
+      instanceID_: 1733829
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 5, z: -1}
+        uv: {x: 9, y: -11}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: -1}
+        uv: {x: -1, y: -11}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: 0}
+        uv: {x: -1, y: -10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 5, z: 0}
+        uv: {x: 9, y: -10}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -0.19611613, y: 0.9805807, z: 0}
+        distance_: -2.9417422
+      matID_: 0
+      flags_: 0
+      instanceID_: 1733833
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 5, z: 0}
+        uv: {x: -10, y: 6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 0}
+        uv: {x: -10, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: -1}
+        uv: {x: -11, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 5, z: -1}
+        uv: {x: -11, y: 6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 1, y: 0, z: 0}
+        distance_: -10
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739682
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 2, z: 0}
+        uv: {x: -10, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: -1}
+        uv: {x: -11, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 0}
+        uv: {x: -10, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 1, y: -0, z: 0}
+        distance_: -10
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739686
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 3, z: 0}
+        uv: {x: -10, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 10}
+        uv: {x: 0, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 0, z: 10}
+        uv: {x: 0, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 0, z: 0}
+        uv: {x: -10, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 1, y: 0, z: 0}
+        distance_: -10
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739690
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 3, z: 10}
+        uv: {x: 0, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 11}
+        uv: {x: 1, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 2, z: 10}
+        uv: {x: 0, y: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 1, y: 0, z: -0}
+        distance_: -10
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739694
+      groupID: 0
+    - vertices_:
+      - pos: {x: 10, y: 5, z: 11}
+        uv: {x: 1, y: 6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 11}
+        uv: {x: 1, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 3, z: 10}
+        uv: {x: 0, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 10, y: 5, z: 10}
+        uv: {x: 0, y: 6}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: 1, y: 0, z: 0}
+        distance_: -10
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739698
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 1, z: 11}
+        uv: {x: -1, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: 11}
+        uv: {x: -1, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: 10}
+        uv: {x: 0, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: 10}
+        uv: {x: 0, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739702
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 0, z: 10}
+        uv: {x: 0, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: 11}
+        uv: {x: -1, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: 10}
+        uv: {x: 0, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739706
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 0, z: 0}
+        uv: {x: 10, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 0, z: 10}
+        uv: {x: 0, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1.2, z: 10}
+        uv: {x: 0, y: 2.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1.2, z: 0}
+        uv: {x: 10, y: 2.2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739710
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 1, z: 0}
+        uv: {x: 10, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: -1}
+        uv: {x: 11, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 0, z: 0}
+        uv: {x: 10, y: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739714
+      groupID: 0
+    - vertices_:
+      - pos: {x: 0, y: 3, z: -1}
+        uv: {x: 11, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: -1}
+        uv: {x: 11, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 1, z: 0}
+        uv: {x: 10, y: 2}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - pos: {x: 0, y: 3, z: 0}
+        uv: {x: 10, y: 4}
+        color: {r: 1, g: 1, b: 1, a: 1}
+      edges_:
+      - i0_: 0
+        i1_: 1
+      - i0_: 1
+        i1_: 2
+      - i0_: 2
+        i1_: 3
+      - i0_: 3
+        i1_: 0
+      uvParams_:
+        shift: {x: 0, y: 0}
+        scale: {x: 1, y: 1}
+        rotation: 0
+      plane_:
+        normal_: {x: -1, y: 0, z: 0}
+        distance_: -0
+      matID_: 0
+      flags_: 0
+      instanceID_: 1739718
+      groupID: 0
+    mainPolygonsStream: 
+    subPolygons_: []
+    smoothingGroups_:
+      smoothing_groups_: []
+      smoothingGroupStream_: 
+    edgeSharpnesses_:
+      edgeSharpnesses_: []
+    mirrorMode_:
+      enable: 0
+      plane:
+        normal_: {x: 0, y: 0, z: 0}
+        distance_: 0
+      backup: 0
+      propertyJSON: 
+    uvIslandManager_:
+      uvislands_: []
+      uvislandsStream_: 
+    polygonGroupManager_:
+      polygonGroups_: []
+    activePolygonGroupId: 0
+  backfaces_: 0
+  materials:
+  - {fileID: 2100000, guid: f57590384f3123d47be2ca510d885e22, type: 2}
+  originalMaterials: []
+  editMode: 1
+  recalculateTangents: 1
+  serializedGuid: 
+  assetPath: 
+  isInvisibleObject: 0
+  mainRenderableMesh: {fileID: -7714260317380798807}
+  hotspotLayout: {fileID: 0}
+  hotspotScale: 1
+  hotspotPadding: 0
+  hotspotPriority: 0.5
+  autoHotspotLayout: 0
+  hotspotGroup: 0
+--- !u!33 &6590294645203227600
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029003511021356597}
+  m_Mesh: {fileID: -7714260317380798807}
+--- !u!23 &4899596170259365548
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029003511021356597}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f57590384f3123d47be2ca510d885e22, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 2
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &565636850096453967
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029003511021356597}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7714260317380798807}
+--- !u!43 &-7714260317380798807
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: um_32598
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 342
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 198
+    localAABB:
+      m_Center: {x: 5, y: 2.5, z: 5}
+      m_Extent: {x: 5, y: 2.5, z: 6}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000001000200000002000300040005000600040006000700080009000a0008000a000b000c000d000e000c000e000f00100011001200100012001300140015001600140016001700180019001a0018001a001b001c001d001e001c001e001f00200021002200200022002300240025002600240026002700280029002a0028002a002b002c002d002e002c002e002f00300031003200300032003300340035003600340036003700380039003a0038003a003b003c003d003e003c003e003f00400041004200400042004300440045004600440046004700480049004a0048004a004b004c004d004e004c004e004f005000510052005000520053005400550056005400560057006b006c006d0069006a006b0069006b006d00670068006900670069006d00650066006700650067006d00630064006500630065006d00610062006300610063006d005f00600061005f0061006d005d005e005f005d005f006d0058005d006d005c005d0058005b005c0058005a005b00580059005a0058006e006f00700071007200730071007300740075007600770075007700780079007a007b0079007b007c007d00910092008f0091007d00900091008f008d008f007d008b008d007d0089008b007d00870089007d00850087007d00830085007d00810083007d007f0081007d007e007f007d008f008d008e008d008b008c008b0089008a0089008700880087008500860085008300840083008100820081007f0080009300940095009600970098009600980099009a009b009c009a009c009d009e009f00a0009e00a000a100a200a300a400a200a400a500a600a700a800a900aa00ab00a900ab00ac00ad00ae00af00b000b100b200b000b200b300b400b500b600b400b600b700b800b900ba00bb00bc00bd00bb00bd00be00bf00c000c100c200c300c400c200c400c500
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 198
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 56
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 12672
+    _typelessdata: 000010410000404000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c100000000000020410000404000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000010c100000000000020410000404000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000010c100002041000010410000404000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c100002041000000009a99993f00002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000803f000000000000803f9a99993f00002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f00000000000000000000803f9a99993f00000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000000000002041000000009a99993f00000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000803f000020410000803f9a99993f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00000000cdcc0c400000803f3433b33f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000000009a9919400000803f3433b33f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000020419a9919400000803f9a99993f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00002041cdcc0c400000803f3433b33f00002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000000000000000000000403433b33f00002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf00000000000000403433b33f00000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf000020410000803f3433b33f00000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000000000002041000000403433b33f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000000009a99194000000040cccccc3f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000000006666264000000040cccccc3f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204166662640000000403433b33f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000020419a99194000000040cccccc3f00002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf0000000000004040cccccc3f00002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c00000000000004040cccccc3f00000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c00000204100000040cccccc3f00000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf0000204100004040cccccc3f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000066662640000040406666e63f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000033333340000040406666e63f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000020413333334000004040cccccc3f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204166662640000040406666e63f00002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c000000000000080406666e63f00002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000040c000000000000080406666e63f00000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000040c000002041000040406666e63f00000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c000002041000080406666e63f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000033333340000080400000004000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000000004040000080400000004000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204100004040000080406666e63f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204133333340000080400000004000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000040c0000000000000a0400000004000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080c0000000000000a0400000004000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080c000002041000080400000004000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000040c0000020410000a0400000004000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00000000000040400000a040cdcc0c4000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00000000cdcc4c400000a040cdcc0c4000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00002041cdcc4c400000a0400000004000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00002041000040400000a040cdcc0c4000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080c0000000000000c040cdcc0c4000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000a0c0000000000000c040cdcc0c4000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000a0c0000020410000a040cdcc0c4000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080c0000020410000c040cdcc0c4000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00000000cdcc4c400000c0409a99194000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000000009a9959400000c0409a99194000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000020419a9959400000c040cdcc0c4000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00002041cdcc4c400000c0409a99194000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000a0c0000000000000e0409a99194000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000c0c0000000000000e0409a99194000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000c0c0000020410000c0409a99194000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000a0c0000020410000e0409a99194000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000000009a9959400000e0406666264000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00000000666666400000e0406666264000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00002041666666400000e0409a99194000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000020419a9959400000e0406666264000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000c0c000000000000000416666264000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000e0c000000000000000416666264000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000e0c0000020410000e0406666264000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000c0c000002041000000416666264000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000066666640000000413433334000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000034337340000000413433334000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204134337340000000416666264000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204166666640000000413433334000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000e0c000000000000010413433334000002041000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c100000000000010413433334000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c100002041000000413433334000000000000000800000803f00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000e0c000002041000010413433334000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000034337340000010410000404000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000000008040000010410000404000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204100008040000010413433334000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000020413433734000000000000000000000204100000000000080bf00000000000080bf00000000000000000000803f0000803f0000803f0000803f0000803f0000803f0000000000000000000000000000000000000000000080bf00000000000080bf00000000000000000000803f0000803f0000803f0000803f0000803f0000803f0000204100002041000000000000000000000000000080bf00000000000080bf00000000000000000000803f0000803f0000803f0000803f0000803f000010c10000204100002041000000000000204100000000000080bf00000000000080bf00000000000000000000803f0000803f0000803f0000803f0000803f000010c100000000000000000000803f0000000000000000000000000000803f0000803f00000000000000000000803f0000803f0000803f0000803f0000803f000080bf0000004000002041000040400000000000000000000000000000803f0000803f00000000000000000000803f0000803f0000803f0000803f0000803f0000104100008040000020410000a0400000000000000000000000000000803f0000803f00000000000000000000803f0000803f0000803f0000803f0000803f000010410000c04000000000000040400000000000000000000000000000803f0000803f00000000000000000000803f0000803f0000803f0000803f0000803f000080bf00008040000020410000a040000020410000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f000010410000c0400000204100004040000020410000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000104100008040000000000000803f000020410000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf000000400000000000004040000020410000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf0000804000002041000000400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000010c10000404000002041000040400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000010c10000804000001041000040400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c10000804000001041343333400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c13433734000000041343333400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000e0c03433734000000041666626400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000e0c0666666400000e040666626400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000c0c0666666400000e0409a9919400000204100000000000000000000803f000080bf38861d2200000000000080bf0000803f0000803f0000803f0000803f0000c0c09a9959400000c0409a9919400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000a0c09a9959400000c040cdcc0c400000204100000000000000000000803f000080bfbe505d2400000000000080bf0000803f0000803f0000803f0000803f0000a0c0cdcc4c400000a040cdcc0c400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080c0cdcc4c400000a040000000400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080c00000404000008040000000400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000040c000004040000080406666e63f0000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000040c033333340000040406666e63f0000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c03333334000004040cccccc3f0000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000c06666264000000040cccccc3f0000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf66662640000000403433b33f0000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf9a9919400000803f3433b33f0000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000000009a9919400000803f9a99993f0000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f00000000cdcc0c40000000009a99993f0000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000803fcdcc0c4000000000000000000000204100000000000000000000803f000080bf9423072100000000000080bf0000803f0000803f0000803f0000803f0000803f0000803f00000000000000000000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000803f0000803f00002041000000000000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000010c10000803f00002041000000400000204100000000000000000000803f000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f000010c100004040000020410000a0400000304100000080000000000000803f0000803f00000000000000000000803f0000803f0000803f0000803f0000803f000010410000c04000000000000040400000304100000080000000000000803f0000803f00000000000000000000803f0000803f0000803f0000803f0000803f000080bf00008040000000000000803f0000304100000080000000000000803f0000803f00000000000000000000803f0000803f0000803f0000803f0000803f000080bf0000004000002041000040400000304100000080000000000000803f0000803f00000000000000000000803f0000803f0000803f0000803f0000803f0000104100008040000000000000404000003041abd248be56077b3f0000000056077b3fabd2483e00000000000080bf0000803f0000803f0000803f0000803f000080bf0000803f000020410000a04000003041abd248be56077b3f0000000056077b3fabd2483e00000000000080bf0000803f0000803f0000803f0000803f000010410000803f000020410000a04000002041abd248be56077b3f0000000056077b3fabd2483e00000000000080bf0000803f0000803f0000803f0000803f0000104100000000000000000000404000002041abd248be56077b3f0000000056077b3fabd2483e00000000000080bf0000803f0000803f0000803f0000803f000080bf0000000000000000000000000000204181630f3e613c33bf613c333f56077bbfabd248beab9a0c310000803f0000803f0000803f0000803f0000803f0000803f0000000000002041000000400000204181630f3e613c33bf613c333f56077bbfabd248beab9a0c310000803f0000803f0000803f0000803f0000803f000010c10000000000002041000040400000304181630f3e613c33bf613c333f56077bbfabd248beab9a0c310000803f0000803f0000803f0000803f0000803f000010c1000080bf000000000000803f0000304181630f3e613c33bf613c333f56077bbfabd248beab9a0c310000803f0000803f0000803f0000803f0000803f0000803f000080bf0000000000000000000000000000000000000000000080bf0000803fc0a7ec1f00000000000080bf0000803f0000803f0000803f0000803f000080bf0000803f000000009a99993f000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f000080bfcdcc0c400000803f9a99993f000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f00000000cdcc0c400000803f3433b33f000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f000000009a991940000000403433b33f000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000803f9a99194000000040cccccc3f000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000803f6666264000004040cccccc3f000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000004066662640000040406666e63f000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000004033333340000080406666e63f000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f00004040333333400000804000000040000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f00004040000040400000a04000000040000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f00008040000040400000a040cdcc0c40000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f00008040cdcc4c400000c040cdcc0c40000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000a040cdcc4c400000c0409a991940000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000a0409a9959400000e0409a991940000000000000000000000000000080bf0000803fcee15ea400000000000080bf0000803f0000803f0000803f0000803f0000c0409a9959400000e04066662640000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000c040666666400000004166662640000000000000000000000000000080bf0000803fb97b0aa200000000000080bf0000803f0000803f0000803f0000803f0000e040666666400000004134333340000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f0000e040343373400000104134333340000000000000000000000000000080bf0000803fad01e12400000000000080bf0000803f0000803f0000803f0000803f00000041343373400000104100004040000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f00000041000080400000204100004040000000000000000000000000000080bf0000803fe56e6e2100000000000080bf0000803f0000803f0000803f0000803f00001041000080400000204100000040000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f00001041000040400000204100000040000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f00001041000040400000204100000000000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f000010410000803f0000000000000000000000000000000000000000000080bf0000803f0000000000000000000080bf0000803f0000803f0000803f0000803f000080bf0000803f0000204100004040000080bf0000000000000000000080bf000080bf00000000000000000000803f0000803f0000803f0000803f0000803f000010c100008040000000000000803f000080bf0000000000000000000080bf000080bf00000000000000000000803f0000803f0000803f0000803f0000803f0000803f000000400000000000004040000080bf0000000000000000000080bf000080bf00000000000000000000803f0000803f0000803f0000803f0000803f0000803f00008040000020410000a040000080bf0000000000000000000080bf000080bf00000000000000000000803f0000803f0000803f0000803f0000803f000010c10000c04000002041000000400000000081630f3e613c33bf613c33bf56077bbfabd248beab9a0cb10000803f0000803f0000803f0000803f0000803f000010c10000204100000000000000000000000081630f3e613c33bf613c33bf56077bbfabd248beab9a0cb10000803f0000803f0000803f0000803f0000803f0000803f00002041000000000000803f000080bf81630f3e613c33bf613c33bf56077bbfabd248beab9a0cb10000803f0000803f0000803f0000803f0000803f0000803f000030410000204100004040000080bf81630f3e613c33bf613c33bf56077bbfabd248beab9a0cb10000803f0000803f0000803f0000803f0000803f000010c100003041000020410000a040000080bfabd248be56077b3f0000000056077b3fabd2483e00000000000080bf0000803f0000803f0000803f0000803f00001041000030c10000000000004040000080bfabd248be56077b3f0000000056077b3fabd2483e00000000000080bf0000803f0000803f0000803f0000803f000080bf000030c1000000000000404000000000abd248be56077b3f0000000056077b3fabd2483e00000000000080bf0000803f0000803f0000803f0000803f000080bf000020c1000020410000a04000000000abd248be56077b3f0000000056077b3fabd2483e00000000000080bf0000803f0000803f0000803f0000803f00001041000020c1000020410000a040000000000000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000020c10000c0400000204100004040000000000000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000020c1000080400000204100004040000080bf0000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000030c100008040000020410000a040000080bf0000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000030c10000c0400000204100000040000000000000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000020c1000040400000204100004040000080bf0000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000030c1000080400000204100004040000000000000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000020c1000080400000204100004040000000000000803f000000000000008000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000020c1000080400000204100004040000020410000803f000000000000008000000000000000000000803f000080bf0000803f0000803f0000803f0000803f00000000000080400000204100000000000020410000803f000000000000008000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000000000000803f0000204100000000000000000000803f000000000000008000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000020c10000803f0000204100004040000020410000803f000000000000008000000000000000000000803f000080bf0000803f0000803f0000803f0000803f00000000000080400000204100004040000030410000803f000000000000008000000000000000000000803f000080bf0000803f0000803f0000803f0000803f0000803f000080400000204100000040000020410000803f000000000000008000000000000000000000803f000080bf0000803f0000803f0000803f0000803f0000000000004040000020410000a040000030410000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f0000803f0000c0400000204100004040000030410000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f0000803f000080400000204100004040000020410000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f0000000000008040000020410000a040000020410000803f000000800000000000000000000000000000803f000080bf0000803f0000803f0000803f0000803f000000000000c040000000000000803f00003041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000080bf00000040000000000000404000003041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000080bf00008040000000000000404000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000000008040000000000000803f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000000000040000000000000000000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000000000000803f000000000000803f00003041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000080bf00000040000000000000803f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000000000000040000000000000000000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000020410000803f000000000000000000002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000000000000803f000000009a99993f00002041000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00000000cdcc0c40000000009a99993f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f00002041cdcc0c40000000000000803f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204100000040000000000000803f000080bf000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000304100000040000000000000000000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f000020410000803f0000000000004040000080bf000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000304100008040000000000000803f000080bf000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000304100000040000000000000803f00000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204100000040000000000000404000000000000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f0000803f0000803f0000204100008040
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 5, y: 2.5, z: 5}
+    m_Extent: {x: 5.0010004, y: 2.501, z: 6.0010004}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
