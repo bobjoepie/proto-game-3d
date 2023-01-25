@@ -11,7 +11,7 @@ public enum EntityAnimationState
     Moving
 }
 
-public class PlayerController : EntityController
+public class PlayerController : EntityController, IInputController
 {
     private InputManager input;
     public AttackController attackController;

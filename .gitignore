@@ -58,3 +58,21 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+/Packages/JetBrains.Annotations*
+*.config
+/UserSettings/
+
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/.idea.proto-game.iml
+/contentModel.xml
+/modules.xml
+/projectSettingsUpdater.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+/.idea/

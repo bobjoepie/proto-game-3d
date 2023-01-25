@@ -37,6 +37,10 @@ public enum KeyAction
 
     DialogueContinue,
     DialogueSkip,
+
+    BG_LeftClick,
+    BG_RightClick,
+    BG_SpaceKey
 }
 
 public static class DefaultActionMaps
@@ -80,14 +84,23 @@ public static class DefaultActionMaps
         KeyAction.DialogueContinue,
         KeyAction.DialogueSkip,
     };
+
+    public static readonly List<KeyAction> BattlegroundActions = new List<KeyAction>()
+    {
+        KeyAction.BG_LeftClick,
+        KeyAction.BG_RightClick,
+        KeyAction.BG_SpaceKey,
+    };
 }
+
+public interface IInputController {}
 
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
-    private readonly Dictionary<EntityController, HashSet<KeyAction>> actionMaps = new Dictionary<EntityController, HashSet<KeyAction>>();
-    private readonly Dictionary<EntityController, HashSet<KeyAction>> heldActionMaps = new Dictionary<EntityController, HashSet<KeyAction>>();
+    private readonly Dictionary<IInputController, HashSet<KeyAction>> actionMaps = new Dictionary<IInputController, HashSet<KeyAction>>();
+    private readonly Dictionary<IInputController, HashSet<KeyAction>> heldActionMaps = new Dictionary<IInputController, HashSet<KeyAction>>();
 
     private readonly Dictionary<KeyAction, KeyCode> KeyActionMap = new Dictionary<KeyAction, KeyCode>()
     {
@@ -122,6 +135,10 @@ public class InputManager : MonoBehaviour
 
         {KeyAction.DialogueContinue     ,       KeyCode.Return},
         {KeyAction.DialogueSkip         ,       KeyCode.Escape},
+
+        {KeyAction.BG_LeftClick         ,       KeyCode.Mouse0},
+        {KeyAction.BG_RightClick        ,       KeyCode.Mouse1},
+        {KeyAction.BG_SpaceKey          ,       KeyCode.Space},
     };
 
     private InputManager()
@@ -129,7 +146,7 @@ public class InputManager : MonoBehaviour
         Instance = this;
     }
 
-    public bool PollKeyDown(EntityController entity, KeyAction action)
+    public bool PollKeyDown(IInputController entity, KeyAction action)
     {
         if (Input.GetKeyDown(KeyActionMap[action]) && actionMaps.ContainsKey(entity) && actionMaps[entity].Contains(action))
         {
@@ -138,7 +155,7 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
-    public bool PollKeyUp(EntityController entity, KeyAction action)
+    public bool PollKeyUp(IInputController entity, KeyAction action)
     {
         if (Input.GetKeyUp(KeyActionMap[action]) && actionMaps.ContainsKey(entity) && actionMaps[entity].Contains(action))
         {
@@ -147,13 +164,45 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
-    public bool PollKey(EntityController entity, KeyAction action)
+    public bool PollKey(IInputController entity, KeyAction action)
     {
         if (Input.GetKey(KeyActionMap[action]) && actionMaps.ContainsKey(entity) && actionMaps[entity].Contains(action))
         {
             return true;
         }
         return false;
+    }
+
+    public bool PollKeyDownIgnoreUI(IInputController entity, KeyAction action)
+    {
+        if (Input.GetKeyDown(KeyActionMap[action]) && actionMaps.ContainsKey(entity) && actionMaps[entity].Contains(action) && !IsHoveringOverUI())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool PollKeyUpIgnoreUI(IInputController entity, KeyAction action)
+    {
+        if (Input.GetKeyUp(KeyActionMap[action]) && actionMaps.ContainsKey(entity) && actionMaps[entity].Contains(action) && !IsHoveringOverUI())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool PollKeyIgnoreUI(IInputController entity, KeyAction action)
+    {
+        if (Input.GetKey(KeyActionMap[action]) && actionMaps.ContainsKey(entity) && actionMaps[entity].Contains(action) && !IsHoveringOverUI())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool IsHoveringOverUI()
+    {
+        return BG_UIDocManager.Instance.IsHoveringOverUI();
     }
 
     public void Remap(KeyAction keyAction, KeyCode keyCode)
@@ -164,7 +213,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void ToggleActionMaps(EntityController entity)
+    public void ToggleActionMaps(IInputController entity)
     {
         if (heldActionMaps.ContainsKey(entity))
         {
@@ -176,7 +225,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void HoldActionMap(EntityController entity)
+    public void HoldActionMap(IInputController entity)
     {
         if (heldActionMaps.ContainsKey(entity))
         {
@@ -189,7 +238,7 @@ public class InputManager : MonoBehaviour
         actionMaps.Remove(entity);
     }
 
-    public void ReleaseActionMap(EntityController entity)
+    public void ReleaseActionMap(IInputController entity)
     {
         if (actionMaps.ContainsKey(entity))
         {
@@ -206,7 +255,7 @@ public class InputManager : MonoBehaviour
     {
         switch (entity)
         {
-            case EntityController e:
+            case IInputController e:
                 if (actionMaps.ContainsKey(e))
                 {
                     actionMaps[e].UnionWith(actionMap);
@@ -223,7 +272,7 @@ public class InputManager : MonoBehaviour
     {
         switch (entity)
         {
-            case EntityController e:
+            case IInputController e:
                 if (actionMaps.ContainsKey(e))
                 {
                     actionMaps[e].Add(action);
@@ -240,7 +289,7 @@ public class InputManager : MonoBehaviour
     {
         switch (entity)
         {
-            case EntityController e:
+            case IInputController e:
                 if (actionMap == null)
                 {
                     actionMaps.Remove(e);
@@ -257,7 +306,7 @@ public class InputManager : MonoBehaviour
     {
         switch (entity)
         {
-            case EntityController e:
+            case IInputController e:
                 if (actionMaps.ContainsKey(e))
                 {
                     actionMaps[e].Remove(action);
