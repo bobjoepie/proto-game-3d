@@ -12,6 +12,7 @@ public class BG_UIDocManager : MonoBehaviour
     private static VisualElement root;
     public BG_HUD_Overlay hudOverlay;
     private List<VisualElement> rayCastBlockers = new List<VisualElement>();
+    public VisualTreeAsset cardTemplate;
 
     public BG_UIDocManager()
     {
@@ -22,6 +23,12 @@ public class BG_UIDocManager : MonoBehaviour
     {
         root = document.rootVisualElement;
         hudOverlay = root.Q<BG_HUD_Overlay>();
+        hudOverlay.cardTemplate = cardTemplate;
+    }
+
+    private void Start()
+    {
+        hudOverlay.HidePanel(PanelType.Button);
     }
 
     public void AddRaycastBlocker(VisualElement element)
@@ -57,7 +64,10 @@ public class BG_UIDocManager : MonoBehaviour
         Vector3 pos = element.transform.position;
         Rect blockingArea = new Rect(pos.x, pos.y, layout.width, layout.height);
 
-        if (mousePosPanel.x <= blockingArea.xMax && mousePosPanel.x >= blockingArea.xMin && mousePosPanel.y <= blockingArea.yMax && mousePosPanel.y >= blockingArea.yMin)
+        if (mousePosPanel.x <= blockingArea.xMax &&
+            mousePosPanel.x >= blockingArea.xMin &&
+            mousePosPanel.y <= blockingArea.yMax &&
+            mousePosPanel.y >= blockingArea.yMin)
         {
             return true;
         }

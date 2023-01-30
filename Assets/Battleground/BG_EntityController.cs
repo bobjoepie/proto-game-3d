@@ -10,6 +10,17 @@ public class BG_EntityController : MonoBehaviour
 
     private Renderer meshRenderer;
 
+    [Header("Properties")]
+    public string internalName;
+
+    public Sprite pickupSprite;
+    public GameObject pickupGameObject;
+    public AudioClip pickupAudioClip;
+
+    public AudioClip selectionAudioClip;
+    public Sprite portrait;
+    public Sprite icon;
+
     // Start is called before the first frame update
     void Start()
     {

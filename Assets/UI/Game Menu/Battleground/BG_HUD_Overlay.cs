@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,7 +12,14 @@ public class BG_HUD_Overlay : VisualElement
     //private VisualElement HealthBar;
     //private Label BossName;
     public List<VisualElement> panels = new List<VisualElement>();
+    public VisualElement buttonPanel;
     public List<Button> buttons = new List<Button>();
+    public VisualElement cardPanel;
+    public List<BG_HUD_Card> cards = new List<BG_HUD_Card>();
+    public VisualElement statePanel;
+    public Button endTurnButton;
+
+    public VisualTreeAsset cardTemplate;
 
     public new class UxmlFactory : UxmlFactory<BG_HUD_Overlay, UxmlTraits> { }
 
@@ -25,19 +33,37 @@ public class BG_HUD_Overlay : VisualElement
         var toolbar = this.Q("bar");
         BG_UIDocManager.Instance.AddRaycastBlocker(toolbar);
         panels = toolbar.Children().ToList();
-        var panel = panels[2];
-        var rows = panel.Children().Where(c => c.name == "row");
+        InitButtonPanel();
+        InitCardPanel();
+        InitStatePanel();
+
+        this.UnregisterCallback<GeometryChangedEvent>(OnGeometryChange);
+    }
+
+    private void InitButtonPanel()
+    {
+        buttonPanel = panels.First(p => p.name=="button-panel");
+        var rows = buttonPanel.Children().Where(c => c.name == "row");
         foreach (var row in rows)
         {
             foreach (var element in row.Children())
             {
                 var button = (Button)element.Children().First();
+                button.clickable = null;
                 buttons.Add(button);
             }
         }
-        ClearButtonActions();
+    }
 
-        this.UnregisterCallback<GeometryChangedEvent>(OnGeometryChange);
+    private void InitCardPanel()
+    {
+        cardPanel = panels.First(p => p.name == "card-panel");
+    }
+
+    private void InitStatePanel()
+    {
+        statePanel = panels.First(p => p.name == "state-panel");
+        endTurnButton = statePanel.Q<Button>("end-turn-button");
     }
 
     public void InitButtons(List<Action> actions)
@@ -50,7 +76,7 @@ public class BG_HUD_Overlay : VisualElement
                 UniTask.Action(async () =>
                 {
                     await UniTask.NextFrame();
-                    buttons[index].clicked += actions[index].Invoke;
+                    buttons[index].clickable.clicked += actions[index].Invoke;
                 }).Invoke();
             }
             else
@@ -61,16 +87,6 @@ public class BG_HUD_Overlay : VisualElement
                     buttons[index].clickable = null;
                 }).Invoke();
             }
-        }
-
-        foreach (var row in panels[2].Children())
-        {
-            UniTask.Action(async () =>
-            {
-                await UniTask.NextFrame();
-                row.style.visibility = Visibility.Visible;
-
-            }).Invoke();
         }
     }
 
@@ -84,18 +100,41 @@ public class BG_HUD_Overlay : VisualElement
                 button.clickable = null;
 
             }).Invoke();
-            
         }
-        
-        foreach (var row in panels[2].Children())
-        {
-            UniTask.Action(async () =>
-            {
-                await UniTask.NextFrame();
-                row.style.visibility = Visibility.Hidden;
+    }
 
-            }).Invoke();
-        }
+    public void InitCard(BG_CardController cardController, Action action)
+    {
+        UniTask.Action(async () =>
+        {
+            await UniTask.NextFrame();
+            var cardContainer = cardTemplate.Instantiate().Children().First();
+            var card = cardContainer.Q<BG_HUD_Card>();
+            card.InitCard(cardController, action);
+
+            cardPanel.Add(cardContainer);
+
+        }).Invoke();
+    }
+
+    public void RemoveCard(BG_CardController cardController)
+    {
+        UniTask.Action(async () =>
+        {
+            await UniTask.NextFrame();
+            cardController.RemoveFromHud();
+
+        }).Invoke();
+    }
+
+    public void InitEndTurnButton(Action action)
+    {
+        UniTask.Action(async () =>
+        {
+            await UniTask.NextFrame();
+            endTurnButton.clickable.clicked += action;
+
+        }).Invoke();
     }
 
     public void Show()
@@ -129,4 +168,46 @@ public class BG_HUD_Overlay : VisualElement
             Show();
         }
     }
+
+    public void ShowPanel(PanelType panel)
+    {
+        UniTask.Action(async () =>
+        {
+            await UniTask.NextFrame();
+            switch (panel)
+            {
+                case PanelType.Button:
+                    buttonPanel.style.visibility = Visibility.Visible;
+                    break;
+                case PanelType.Card:
+                    cardPanel.style.visibility = Visibility.Visible;
+                    break;
+            }
+
+        }).Invoke();
+    }
+
+    public void HidePanel(PanelType panel)
+    {
+        UniTask.Action(async () =>
+        {
+            await UniTask.NextFrame();
+            switch (panel)
+            {
+                case PanelType.Button:
+                    buttonPanel.style.visibility = Visibility.Hidden;
+                    break;
+                case PanelType.Card:
+                    cardPanel.style.visibility = Visibility.Hidden;
+                    break;
+            }
+
+        }).Invoke();
+    }
+}
+
+public enum PanelType
+{
+    Button,
+    Card
 }

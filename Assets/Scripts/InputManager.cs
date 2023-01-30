@@ -40,7 +40,10 @@ public enum KeyAction
 
     BG_LeftClick,
     BG_RightClick,
-    BG_SpaceKey
+    BG_SpaceKey,
+
+    BG_Confirm,
+    BG_Cancel
 }
 
 public static class DefaultActionMaps
@@ -86,6 +89,13 @@ public static class DefaultActionMaps
     };
 
     public static readonly List<KeyAction> BattlegroundActions = new List<KeyAction>()
+    {
+        KeyAction.BG_LeftClick,
+        KeyAction.BG_RightClick,
+        KeyAction.BG_SpaceKey,
+    };
+
+    public static readonly List<KeyAction> BG_ConfirmationActions = new List<KeyAction>()
     {
         KeyAction.BG_LeftClick,
         KeyAction.BG_RightClick,
@@ -139,6 +149,9 @@ public class InputManager : MonoBehaviour
         {KeyAction.BG_LeftClick         ,       KeyCode.Mouse0},
         {KeyAction.BG_RightClick        ,       KeyCode.Mouse1},
         {KeyAction.BG_SpaceKey          ,       KeyCode.Space},
+
+        {KeyAction.BG_Confirm           ,       KeyCode.Mouse0},
+        {KeyAction.BG_Cancel            ,       KeyCode.Mouse1},
     };
 
     private InputManager()

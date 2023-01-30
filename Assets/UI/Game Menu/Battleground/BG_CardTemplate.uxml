@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="card" style="width: 100%; height: 100%; margin-right: 10px; background-color: rgba(94, 94, 94, 0.39); align-items: center; justify-content: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+        <BG_HUD_Card name="card-button" text="Button" style="width: 100%; height: 100%; font-size: 48px;" />
+    </ui:VisualElement>
+</ui:UXML>

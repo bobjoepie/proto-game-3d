@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BG_BuildingController : BG_EntityController
 {
-    public List<BG_EntityController> constructableEntities = new List<BG_EntityController>();
+    public List<BG_EntityData> constructableEntities = new List<BG_EntityData>();
 
     public List<Action> LoadButtons()
     {
@@ -22,7 +22,7 @@ public class BG_BuildingController : BG_EntityController
         return actions;
     }
 
-    public void Construct(BG_EntityController entity)
+    public void Construct(BG_EntityData entity)
     {
         Debug.Log($"Constructing {entity.name}...");
     }
