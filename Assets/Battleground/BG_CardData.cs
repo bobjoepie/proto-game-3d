@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "BG/Card Data"), Serializable]
-
 public class BG_CardData : ScriptableObject
 {
     [Header("Card Properties")]
     public string cardName;
     public int cardTier;
     public float cardCost;
-    public BG_EntityData entityData;
+    public List<BG_CardBehavior> castBehaviors;
 
     [Header("Internal Properties")]
     public Sprite pickupSprite;
@@ -27,7 +26,7 @@ public class BG_CardData : ScriptableObject
         cardController.cardName = this.cardName;
         cardController.cardTier = this.cardTier;
         cardController.cardCost = this.cardCost;
-        cardController.entityData = this.entityData;
+        cardController.castBehaviors = this.castBehaviors;
 
         cardController.cardData = this;
 

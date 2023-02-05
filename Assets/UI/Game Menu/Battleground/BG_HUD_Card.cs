@@ -27,7 +27,6 @@ public class BG_HUD_Card : Button
         this.clickable.clicked += () =>
         {
             action.Invoke();
-            DestroyCard();
         };
     }
 

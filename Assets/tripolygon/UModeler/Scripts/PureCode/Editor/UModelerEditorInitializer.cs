@@ -171,7 +171,7 @@ namespace TPUModelerEditor
         {
             EditorUtil.DisableHasTransformed();
             MenuGUICacheData.Invalidate();
-            if (scene != null)
+            if (scene != null && scene.isLoaded)
             {
                 SystemUtil.CheckAllUModelerPrefabInstance(scene.GetRootGameObjects());
             }

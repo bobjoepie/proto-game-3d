@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BG_CardManager : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class BG_CardManager : MonoBehaviour
 
     private BG_StateManager stateManager;
     private BG_UIDocManager uiDocManager;
+    private Camera mainCamera;
 
     public BG_CardManager()
     {
@@ -26,6 +29,7 @@ public class BG_CardManager : MonoBehaviour
     {
         stateManager = BG_StateManager.Instance;
         uiDocManager = BG_UIDocManager.Instance;
+        mainCamera = Camera.main;
 
         ConvertDeckData();
     }
@@ -78,12 +82,27 @@ public class BG_CardManager : MonoBehaviour
 
     public void PlayCard(BG_CardController card)
     {
-        hand.Remove(card);
-        discardPile.Add(card);
+        foreach (var behavior in card.castBehaviors)
+        {
+            switch (behavior)
+            {
+                case BG_CardSummon cardSummon:
+                    Action<Vector3> summon = pos =>
+                    {
+                        var entity = cardSummon.unitData.entityGameObject;
+                        cardSummon.unitData.ConvertData(entity);
+                        Instantiate(entity, pos, Quaternion.identity);
+                        DiscardCard(card);
+                    };
+                    stateManager.WaitForConfirmAction(summon);
+                    break;
+            }
+        }
     }
 
     public void DiscardCard(BG_CardController card)
     {
+        card.RemoveFromHud();
         hand.Remove(card);
         discardPile.Add(card);
     }

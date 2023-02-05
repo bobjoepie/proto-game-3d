@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -11,7 +12,8 @@ public enum TurnState
     Current,
     End,
     
-    Transition
+    Transition,
+    Confirmation
 }
 
 public enum TurnOwner
@@ -78,6 +80,7 @@ public class BG_StateManager : MonoBehaviour, IInputController
     public BG_EntityController selectedEntity;
 
     private BG_CardManager cardManager;
+    private Action<Vector3> actionToConfirm;
 
     public BG_StateManager()
     {
@@ -110,7 +113,14 @@ public class BG_StateManager : MonoBehaviour, IInputController
     void Update()
     {
         // move inputs from stateManager
-        CheckInputs();
+        if (currentTurnState == TurnState.Current)
+        {
+            CheckInputs();
+        }
+        else if (currentTurnState == TurnState.Confirmation)
+        {
+            CheckConfirmation();
+        }
     }
 
     private void CheckInputs()
@@ -130,15 +140,15 @@ public class BG_StateManager : MonoBehaviour, IInputController
 
     private void HandleSelection(RaycastHit hit)
     {
-        if (hit.transform.TryGetComponent<BG_UnitController>(out var unit))
+        if (hit.transform.root.TryGetComponent<BG_UnitController>(out var unit))
         {
             HandleUnitSelection(unit);
         }
-        else if (hit.transform.TryGetComponent<BG_BuildingController>(out var building))
+        else if (hit.transform.root.TryGetComponent<BG_BuildingController>(out var building))
         {
             HandleBuildingSelection(building);
         }
-        else if (hit.transform.TryGetComponent<BG_GridHandler>(out var gridHandler))
+        else if (hit.transform.root.TryGetComponent<BG_GridHandler>(out var gridHandler))
         {
             uiDocManager.hudOverlay.ClearButtonActions();
             uiDocManager.hudOverlay.HidePanel(PanelType.Button);
@@ -149,10 +159,7 @@ public class BG_StateManager : MonoBehaviour, IInputController
 
     private void HandleUnitSelection(BG_EntityController entity)
     {
-        if (entity.transform.root.TryGetComponent<BG_GridHandler>(out var gridHandler))
-        {
-            var localCoord = Vector3Int.FloorToInt(entity.transform.parent.localPosition);
-        }
+        if (selectedEntity != null) selectedEntity = selectedEntity.Deselect();
         selectedEntity = entity.Select();
     }
 
@@ -173,8 +180,20 @@ public class BG_StateManager : MonoBehaviour, IInputController
         {
             childName = gridHandler.gridCells[x][y].transform.GetChild(0).name;
         }
+        
+    }
 
-        //Debug.Log($"({localCoord.x},{localCoord.z}) contains {childName}.");
+    private void CheckConfirmation()
+    {
+        if (input.PollKeyDownIgnoreUI(this, KeyAction.BG_Confirm)
+            && Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, layerMask: LayerUtility.Only("Battleground")))
+        {
+            ConfirmAction(hit.point);
+        }
+        else if (input.PollKeyDown(this, KeyAction.BG_Cancel))
+        {
+            CancelAction();
+        }
     }
 
     public void InitTurnSetup()
@@ -234,5 +253,40 @@ public class BG_StateManager : MonoBehaviour, IInputController
 
         currentTurnState = TurnState.Start;
         StartTurn();
+    }
+
+    public void WaitForConfirmAction(Action<Vector3> action)
+    {
+        currentTurnState = TurnState.Confirmation;
+        actionToConfirm = action;
+        input.HoldActionMap(this);
+        input.Register(this, DefaultActionMaps.BG_ConfirmationActions);
+    }
+
+    public void ConfirmAction(Vector3 pos)
+    {
+        actionToConfirm.Invoke(pos);
+        currentTurnState = TurnState.Current;
+        actionToConfirm = null;
+        input.Unregister(this, DefaultActionMaps.BG_ConfirmationActions);
+        input.ReleaseActionMap(this);
+    }
+
+    public void CancelAction()
+    {
+        currentTurnState = TurnState.Current;
+        actionToConfirm = null;
+        input.Unregister(this, DefaultActionMaps.BG_ConfirmationActions);
+        input.ReleaseActionMap(this);
+    }
+
+    public void SetTurnState(TurnState turnState)
+    {
+        currentTurnState = turnState;
+    }
+
+    public void SetTurnOwner(TurnOwner turnOwner)
+    {
+        currentTurnOwner = turnOwner;
     }
 }

@@ -43,7 +43,18 @@ public enum KeyAction
     BG_SpaceKey,
 
     BG_Confirm,
-    BG_Cancel
+    BG_Cancel,
+
+    BG_Up,
+    BG_Left,
+    BG_Down,
+    BG_Right,
+
+    BG_ZoomIn,
+    BG_ZoomOut,
+    BG_ResetZoom,
+
+    BG_SpeedUpCamera,
 }
 
 public static class DefaultActionMaps
@@ -97,9 +108,22 @@ public static class DefaultActionMaps
 
     public static readonly List<KeyAction> BG_ConfirmationActions = new List<KeyAction>()
     {
-        KeyAction.BG_LeftClick,
-        KeyAction.BG_RightClick,
-        KeyAction.BG_SpaceKey,
+        KeyAction.BG_Confirm,
+        KeyAction.BG_Cancel,
+    };
+
+    public static readonly List<KeyAction> BG_CameraActions = new List<KeyAction>()
+    {
+        KeyAction.BG_Up,
+        KeyAction.BG_Left,
+        KeyAction.BG_Down,
+        KeyAction.BG_Right,
+
+        KeyAction.BG_ZoomIn,
+        KeyAction.BG_ZoomOut,
+        KeyAction.BG_ResetZoom,
+
+        KeyAction.BG_SpeedUpCamera,
     };
 }
 
@@ -152,6 +176,17 @@ public class InputManager : MonoBehaviour
 
         {KeyAction.BG_Confirm           ,       KeyCode.Mouse0},
         {KeyAction.BG_Cancel            ,       KeyCode.Mouse1},
+
+        {KeyAction.BG_Up                ,       KeyCode.W},
+        {KeyAction.BG_Left              ,       KeyCode.A},
+        {KeyAction.BG_Down              ,       KeyCode.S},
+        {KeyAction.BG_Right             ,       KeyCode.D},
+
+        {KeyAction.BG_ZoomIn            ,       KeyCode.PageUp},
+        {KeyAction.BG_ZoomOut           ,       KeyCode.PageDown},
+        {KeyAction.BG_ResetZoom         ,       KeyCode.Home},
+
+        {KeyAction.BG_SpeedUpCamera     ,       KeyCode.LeftShift},
     };
 
     private InputManager()

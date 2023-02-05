@@ -8,7 +8,7 @@ public class BG_CardController : MonoBehaviour
     public string cardName;
     public int cardTier;
     public float cardCost;
-    public BG_EntityData entityData;
+    public List<BG_CardBehavior> castBehaviors;
 
     [Header("Internal Properties")] 
     public BG_CardData cardData;

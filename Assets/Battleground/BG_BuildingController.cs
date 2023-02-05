@@ -8,6 +8,16 @@ public class BG_BuildingController : BG_EntityController
 {
     public List<BG_EntityData> constructableEntities = new List<BG_EntityData>();
 
+    public override void Start()
+    {
+        base.Start();
+    }
+
+    private void OnEnable()
+    {
+        BG_EntityManager.Instance.Register(this);
+    }
+
     public List<Action> LoadButtons()
     {
         List<Action> actions = new List<Action>();
@@ -25,5 +35,10 @@ public class BG_BuildingController : BG_EntityController
     public void Construct(BG_EntityData entity)
     {
         Debug.Log($"Constructing {entity.name}...");
+    }
+
+    private void OnDisable()
+    {
+        BG_EntityManager.Instance.Unregister(this);
     }
 }

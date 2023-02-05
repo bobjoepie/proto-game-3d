@@ -15,7 +15,8 @@ MonoBehaviour:
   cardName: Thugs
   cardTier: 1
   cardCost: 20
-  entityData: {fileID: 0}
+  castBehaviors:
+  - {fileID: 11400000, guid: 63799e5efc314aa4d924a3b88440ecd3, type: 2}
   pickupSprite: {fileID: 0}
   pickupGameObject: {fileID: 0}
   pickupAudioClip: {fileID: 0}
