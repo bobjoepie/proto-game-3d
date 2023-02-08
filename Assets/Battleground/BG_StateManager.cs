@@ -126,7 +126,8 @@ public class BG_StateManager : MonoBehaviour, IInputController
     private void CheckInputs()
     {
         if (input.PollKeyDownIgnoreUI(this, KeyAction.BG_LeftClick)
-            && Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, layerMask: LayerUtility.AllBut("Default")))
+            && Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, 
+                layerMask: LayerUtility.Only(new String[] {"Default", "PlayerCollider", "EnemyCollider", "NeutralCollider"})))
         {
             HandleSelection(hit);
         }

@@ -1,19 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using CleverCrow.Fluid.BTs.Tasks;
+using CleverCrow.Fluid.BTs.Trees;
 
 public class BG_EntityController : MonoBehaviour
 {
-    public LayerMask layer;
     public Material baseMaterial;
     public Material selectedMaterial;
 
     public Renderer meshRenderer;
     public BG_AnimatorController animator;
+    public BG_ActionRadiusController actionRadiusController;
+    public BG_ColliderController colliderController;
 
     [Header("Properties")]
     public string internalName;
+    public LayerMask collisionLayer;
+    public LayerMask actionRadiusLayer;
 
     public Sprite pickupSprite;
     public GameObject pickupGameObject;
@@ -25,10 +31,11 @@ public class BG_EntityController : MonoBehaviour
 
     public BG_EntityAttributes attributes;
 
+    [SerializeField] public BehaviorTree behaviorTree;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
-        gameObject.layer = layer.ToLayer();
         if (meshRenderer == null)
         {
             meshRenderer = gameObject.GetComponentInChildren<Renderer>();
@@ -43,6 +50,12 @@ public class BG_EntityController : MonoBehaviour
             case BG_AnimatorController ac:
                 animator = ac;
                 break;
+            case BG_ActionRadiusController ar:
+                actionRadiusController = ar;
+                break;
+            case BG_ColliderController co:
+                colliderController = co;
+                break;
         }
     }
 
@@ -52,6 +65,12 @@ public class BG_EntityController : MonoBehaviour
         {
             case BG_AnimatorController ac:
                 animator = null;
+                break;
+            case BG_ActionRadiusController ar:
+                actionRadiusController = null;
+                break;
+            case BG_ColliderController co:
+                colliderController = null;
                 break;
         }
     }

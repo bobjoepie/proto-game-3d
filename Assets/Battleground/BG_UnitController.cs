@@ -1,6 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using CleverCrow.Fluid.BTs.Tasks;
+using CleverCrow.Fluid.BTs.Trees;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,10 +13,15 @@ public class BG_UnitController : BG_EntityController
     public List<BG_UnitBehavior> unitBehaviors = new List<BG_UnitBehavior>();
     public NavMeshAgent agent;
     public Transform goal;
+    public Transform target;
+    public int behaviorFrequency = 1;
+
+    private CancellationTokenSource cancellationToken;
 
     public override void Start()
     {
         base.Start();
+        StartBehaviorLoop();
     }
 
     private void OnEnable()
@@ -22,51 +31,86 @@ public class BG_UnitController : BG_EntityController
 
     private void Awake()
     {
+        behaviorTree = new BehaviorTreeBuilder(gameObject)
+            .Selector()
+                .Sequence()
+                    .CheckEntitiesInRange()
+                    .AttackValidEntitiesInRange()
+                .End()
+                .Sequence()
+                    .CheckForObjectives()
+                    .NavigateToObjective()
+                .End()
+            .End()
+            .Build();
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
+    public void AttackTarget()
     {
-        foreach (var behavior in unitBehaviors)
+        target = actionRadiusController.GetClosestTarget();
+    }
+
+    private async UniTask BehaviorLoop(CancellationToken token = default)
+    {
+        while (!token.IsCancellationRequested)
         {
-            HandleBehaviors(behavior);
+            behaviorTree.Tick();
+            await UniTask.Delay(TimeSpan.FromSeconds(behaviorFrequency), cancellationToken: token);
         }
     }
 
-    private void HandleBehaviors(BG_UnitBehavior behavior)
+    public void StartBehaviorLoop()
     {
-        switch (behavior)
+        if (cancellationToken != null)
         {
-            case BG_UnitBehaviorMoveTowardsGoal b:
-                HandleBehaviorMoveTowardGoal();
-                break;
-            case BG_UnitBehaviorAggressive b:
-                HandleBehaviorAggressive();
-                break;
-
+            CancelBehaviorLoop();
         }
+        cancellationToken = new CancellationTokenSource();
+        BehaviorLoop(cancellationToken.Token).Forget();
+    }
+
+    public void CancelBehaviorLoop()
+    {
+        cancellationToken.Cancel();
+        cancellationToken.Dispose();
+        cancellationToken = null;
     }
 
     private void HandleBehaviorMoveTowardGoal()
     {
+        if (!agent.hasPath && goal != null)
+        {
+            agent.SetDestination(goal.position);
+        }
 
+        if ((!agent.hasPath && !agent.pathPending && goal != null) ||
+            (goal != null && Vector3.Distance(transform.position, goal.position) <= agent.stoppingDistance + 1.25f))
+        {
+            goal = null;
+            agent.isStopped = true;
+            agent.ResetPath();
+            Debug.Log("complete");
+        }
     }
 
-    public void SetGoal(Transform transform)
+    public void SetGoal(Transform transform = null)
     {
         goal = transform;
-        agent.destination = goal.position;
+        if (goal != null)
+        {
+            agent.SetDestination(goal.position);
+        }
     }
 
     public void ClearGoal()
     {
         goal = null;
-        agent.ResetPath();
     }
 
     private void HandleBehaviorAggressive()
     {
-
+        var target = actionRadiusController.GetClosestTarget();
     }
 
     public override BG_EntityController Select()

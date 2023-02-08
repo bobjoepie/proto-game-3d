@@ -199,7 +199,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &125778106
 GameObject:
@@ -294,7 +294,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &125778109
 MonoBehaviour:
@@ -822,7 +822,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180419908
 GameObject:
@@ -1368,7 +1368,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &188946641
 GameObject:
@@ -1836,7 +1836,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: -76.636, z: 0}
 --- !u!43 &222482116
 Mesh:
@@ -2508,7 +2508,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: -43.246, z: 0}
 --- !u!43 &228535675
 Mesh:
@@ -2934,7 +2934,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &310552863
 MonoBehaviour:
@@ -2948,14 +2948,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67559203f2d7cd7499178f88c026b923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 1024
   baseMaterial: {fileID: 0}
   selectedMaterial: {fileID: 0}
   meshRenderer: {fileID: 0}
   animator: {fileID: 0}
+  actionRadiusController: {fileID: 0}
+  colliderController: {fileID: 0}
   internalName: 
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  actionRadiusLayer:
+    serializedVersion: 2
+    m_Bits: 0
   pickupSprite: {fileID: 0}
   pickupGameObject: {fileID: 0}
   pickupAudioClip: {fileID: 0}
@@ -3446,7 +3451,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &359042258
 Mesh:
@@ -4078,7 +4083,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: -76.636, z: 0}
 --- !u!1001 &548708184
 PrefabInstance:
@@ -4816,7 +4821,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: -48.364, z: 0}
 --- !u!1 &787416949
 GameObject:
@@ -5324,7 +5329,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: -43.246, z: 0}
 --- !u!43 &977752668
 Mesh:
@@ -5583,7 +5588,7 @@ Transform:
   m_Children:
   - {fileID: 684843664}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1138723760
 Mesh:
@@ -5914,7 +5919,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1273251446
 Mesh:
@@ -6176,7 +6181,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -0, y: 180, z: 0}
 --- !u!114 &1278837256
 MonoBehaviour:
@@ -6190,14 +6195,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67559203f2d7cd7499178f88c026b923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4194304
   baseMaterial: {fileID: 0}
   selectedMaterial: {fileID: 0}
   meshRenderer: {fileID: 0}
   animator: {fileID: 0}
+  actionRadiusController: {fileID: 0}
+  colliderController: {fileID: 0}
   internalName: 
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  actionRadiusLayer:
+    serializedVersion: 2
+    m_Bits: 0
   pickupSprite: {fileID: 0}
   pickupGameObject: {fileID: 0}
   pickupAudioClip: {fileID: 0}
@@ -6728,7 +6738,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: -0, y: 180, z: 0}
 --- !u!1 &1400465843
 GameObject:
@@ -7196,7 +7206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: -48.364, z: 0}
 --- !u!1001 &1584699539
 PrefabInstance:
@@ -7210,15 +7220,30 @@ PrefabInstance:
       propertyPath: attributes.tags
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 1760231369634411330, guid: 2d9c2de0c18069942a9849e4a38925b3,
+        type: 3}
+      propertyPath: collisionLayer.m_Bits
+      value: 4194304
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760231369634411330, guid: 2d9c2de0c18069942a9849e4a38925b3,
+        type: 3}
+      propertyPath: actionRadiusLayer.m_Bits
+      value: 67108864
+      objectReference: {fileID: 0}
     - target: {fileID: 8675515702713655036, guid: 2d9c2de0c18069942a9849e4a38925b3,
         type: 3}
       propertyPath: m_Name
       value: Thug (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8675515702713655036, guid: 2d9c2de0c18069942a9849e4a38925b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8675515702713655039, guid: 2d9c2de0c18069942a9849e4a38925b3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8675515702713655039, guid: 2d9c2de0c18069942a9849e4a38925b3,
         type: 3}
@@ -7738,7 +7763,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
 --- !u!1 &2003754712
 GameObject:
@@ -8333,7 +8358,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2047655168
 Mesh:

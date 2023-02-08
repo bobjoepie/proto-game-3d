@@ -14,6 +14,13 @@
       "dependencies": {},
       "hash": "73d86259ce31ce7f4dfe1d028ea1c3edf96c23e4"
     },
+    "com.fluid.behavior-tree": {
+      "version": "2.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.org"
+    },
     "com.jbooth.microsplat.core": {
       "version": "file:com.jbooth.microsplat.core",
       "depth": 0,
