@@ -10,6 +10,8 @@ using UnityEngine.AI;
 
 public class BG_UnitController : BG_EntityController
 {
+    #region Properties
+    
     public List<BG_UnitBehavior> unitBehaviors = new List<BG_UnitBehavior>();
     public NavMeshAgent agent;
     public Transform goal;
@@ -18,11 +20,9 @@ public class BG_UnitController : BG_EntityController
 
     private CancellationTokenSource cancellationToken;
 
-    public override void Start()
-    {
-        base.Start();
-        StartBehaviorLoop();
-    }
+    #endregion
+
+    #region System Methods
 
     private void OnEnable()
     {
@@ -33,22 +33,51 @@ public class BG_UnitController : BG_EntityController
     {
         behaviorTree = new BehaviorTreeBuilder(gameObject)
             .Selector()
-                .Sequence()
-                    .CheckEntitiesInRange()
-                    .AttackValidEntitiesInRange()
+                .Selector("Handle Attacks")
+                    .Sequence()
+                        .HasCurrentTarget()
+                        .IsCurrentTargetInRange()
+                        .AttackCurrentTarget()
+                    .End()
+                    .Sequence()
+                        .HasEntitiesInRange()
+                        .SetValidTarget()
+                        .AttackValidEntitiesInRange()
+                    .End()
                 .End()
-                .Sequence()
-                    .CheckForObjectives()
-                    .NavigateToObjective()
+
+                .Selector("Handle Objectives")
+                    .Sequence("Handle Objective Tasks")
+                        .IsAtObjective()
+                        .PerformObjectiveTask()
+                    .End()
+
+                    .Sequence("Move To Objectives")
+                        .HasValidObjectives()
+                        .Inverter().IsAtObjective().End()
+                        .NavigateToObjective()
+                    .End()
+
+                    //.Sequence("Stop Moving To Objectives")
+                    //    .IsMovingToObjective()
+                    //    .StopMovingToObjective()
+                    //.End()
+                .End()
+
+                .Sequence("Handle Misc")
+                    .ReturnSuccess()
+                        .HasEntitiesInRange()  
+                    .End()
                 .End()
             .End()
             .Build();
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void AttackTarget()
+    protected override void Start()
     {
-        target = actionRadiusController.GetClosestTarget();
+        base.Start();
+        StartBehaviorLoop();
     }
 
     private async UniTask BehaviorLoop(CancellationToken token = default)
@@ -77,42 +106,6 @@ public class BG_UnitController : BG_EntityController
         cancellationToken = null;
     }
 
-    private void HandleBehaviorMoveTowardGoal()
-    {
-        if (!agent.hasPath && goal != null)
-        {
-            agent.SetDestination(goal.position);
-        }
-
-        if ((!agent.hasPath && !agent.pathPending && goal != null) ||
-            (goal != null && Vector3.Distance(transform.position, goal.position) <= agent.stoppingDistance + 1.25f))
-        {
-            goal = null;
-            agent.isStopped = true;
-            agent.ResetPath();
-            Debug.Log("complete");
-        }
-    }
-
-    public void SetGoal(Transform transform = null)
-    {
-        goal = transform;
-        if (goal != null)
-        {
-            agent.SetDestination(goal.position);
-        }
-    }
-
-    public void ClearGoal()
-    {
-        goal = null;
-    }
-
-    private void HandleBehaviorAggressive()
-    {
-        var target = actionRadiusController.GetClosestTarget();
-    }
-
     public override BG_EntityController Select()
     {
         //meshRenderer.material = selectedMaterial;
@@ -129,6 +122,9 @@ public class BG_UnitController : BG_EntityController
 
     private void OnDisable()
     {
+        CancelBehaviorLoop();
         BG_EntityManager.Instance.Unregister(this);
     }
+
+    #endregion
 }

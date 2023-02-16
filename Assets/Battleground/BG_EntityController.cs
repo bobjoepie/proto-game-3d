@@ -34,13 +34,15 @@ public class BG_EntityController : MonoBehaviour
     [SerializeField] public BehaviorTree behaviorTree;
 
     // Start is called before the first frame update
-    public virtual void Start()
+    protected virtual void Start()
     {
         if (meshRenderer == null)
         {
             meshRenderer = gameObject.GetComponentInChildren<Renderer>();
         }
         baseMaterial = meshRenderer.material;
+
+        attributes.curHealth = attributes.maxHealth;
     }
 
     public void Register<T>(T component) where T : MonoBehaviour
@@ -85,5 +87,14 @@ public class BG_EntityController : MonoBehaviour
     {
         meshRenderer.material = baseMaterial;
         return null;
+    }
+
+    public virtual void TakeDamage(int damage)
+    {
+        attributes.curHealth -= damage;
+        if (attributes.curHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

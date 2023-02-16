@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -69,10 +70,14 @@ public class BG_CardManager : MonoBehaviour
 
     private void RenderCardsInHand()
     {
-        foreach (var card in hand)
+        UniTask.Action(async () =>
         {
-            uiDocManager.hudOverlay.InitCard(card, () => PlayCard(card));
-        }
+            foreach (var card in hand)
+            {
+                uiDocManager.hudOverlay.InitCard(card, () => PlayCard(card));
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f / hand.Count));
+            }
+        }).Invoke();
     }
 
     public void DrawHand()
@@ -125,11 +130,15 @@ public class BG_CardManager : MonoBehaviour
     public void DiscardHand()
     {
         discardPile.AddRange(hand.ToList());
-        foreach (var card in hand)
+        UniTask.Action(async () =>
         {
-            uiDocManager.hudOverlay.RemoveCard(card);
-        }
-        hand.Clear();
+            foreach (var card in hand)
+            {
+                uiDocManager.hudOverlay.RemoveCard(card);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.2f / hand.Count));
+            }
+            hand.Clear();
+        }).Invoke();
     }
 
     public void RefreshDeckFromDiscardPile()

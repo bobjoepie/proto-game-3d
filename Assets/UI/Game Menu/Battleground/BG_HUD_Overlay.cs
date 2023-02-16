@@ -11,12 +11,14 @@ public class BG_HUD_Overlay : VisualElement
 {
     //private VisualElement HealthBar;
     //private Label BossName;
-    public List<VisualElement> panels = new List<VisualElement>();
+    public List<VisualElement> bottomPanels = new List<VisualElement>();
+    public List<VisualElement> topPanels = new List<VisualElement>();
     public VisualElement buttonPanel;
     public List<Button> buttons = new List<Button>();
     public VisualElement cardPanel;
     public List<BG_HUD_Card> cards = new List<BG_HUD_Card>();
     public VisualElement statePanel;
+    public Label stateLabel;
     public Button endTurnButton;
 
     public VisualTreeAsset cardTemplate;
@@ -30,19 +32,39 @@ public class BG_HUD_Overlay : VisualElement
 
     void OnGeometryChange(GeometryChangedEvent evt)
     {
-        var toolbar = this.Q("bar");
-        BG_UIDocManager.Instance.AddRaycastBlocker(toolbar);
-        panels = toolbar.Children().ToList();
-        InitButtonPanel();
-        InitCardPanel();
-        InitStatePanel();
+        var bottomToolbar = this.Q("bottom-bar");
+        var topToolbar = this.Q("top-bar");
+        BG_UIDocManager.Instance.AddRaycastBlocker(bottomToolbar);
+        BG_UIDocManager.Instance.AddRaycastBlocker(topToolbar);
+        bottomPanels = bottomToolbar.Children().ToList();
+        topPanels = topToolbar.Children().ToList();
+        InitBottomToolbar();
+        InitTopToolbar();
 
         this.UnregisterCallback<GeometryChangedEvent>(OnGeometryChange);
     }
 
+    private void InitTopToolbar()
+    {
+        InitStateDisplayPanel();
+    }
+
+    private void InitStateDisplayPanel()
+    {
+        var turnDisplayPanel = topPanels.First(p => p.name == "turn-display-panel");
+        stateLabel = turnDisplayPanel.Q<Label>("turn-display-label");
+    }
+
+    private void InitBottomToolbar()
+    {
+        InitButtonPanel();
+        InitCardPanel();
+        InitStatePanel();
+    }
+
     private void InitButtonPanel()
     {
-        buttonPanel = panels.First(p => p.name=="button-panel");
+        buttonPanel = bottomPanels.First(p => p.name=="button-panel");
         var rows = buttonPanel.Children().Where(c => c.name == "row");
         foreach (var row in rows)
         {
@@ -57,12 +79,12 @@ public class BG_HUD_Overlay : VisualElement
 
     private void InitCardPanel()
     {
-        cardPanel = panels.First(p => p.name == "card-panel");
+        cardPanel = bottomPanels.First(p => p.name == "card-panel");
     }
 
     private void InitStatePanel()
     {
-        statePanel = panels.First(p => p.name == "state-panel");
+        statePanel = bottomPanels.First(p => p.name == "state-panel");
         endTurnButton = statePanel.Q<Button>("end-turn-button");
     }
 
@@ -203,6 +225,12 @@ public class BG_HUD_Overlay : VisualElement
             }
 
         }).Invoke();
+    }
+
+    public void SetStateLabel(string state)
+    {
+        var stateLabelParts = stateLabel.text.Split(new[] { "\\r\\n", "\\r", "\\n", "\n" }, StringSplitOptions.None);
+        stateLabel.text = $"{stateLabelParts[0]}\n{state}";
     }
 }
 

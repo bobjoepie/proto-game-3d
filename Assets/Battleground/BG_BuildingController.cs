@@ -8,7 +8,7 @@ public class BG_BuildingController : BG_EntityController
 {
     public List<BG_EntityData> constructableEntities = new List<BG_EntityData>();
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
     }
@@ -35,6 +35,13 @@ public class BG_BuildingController : BG_EntityController
     public void Construct(BG_EntityData entity)
     {
         Debug.Log($"Constructing {entity.name}...");
+    }
+
+    public override BG_EntityController Select()
+    {
+        base.Select();
+        Destroy(this.gameObject);
+        return null;
     }
 
     private void OnDisable()

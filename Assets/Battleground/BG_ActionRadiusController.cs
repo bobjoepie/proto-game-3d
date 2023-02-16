@@ -18,8 +18,6 @@ public class BG_ActionRadiusController : MonoBehaviour
 
     private void Awake()
     {
-        var entityController = transform.parent.GetComponent<BG_EntityController>();
-        gameObject.layer = entityController.actionRadiusLayer.ToLayer();
         if (autoSortEnabled)
         {
             StartAutoSortTargets();
@@ -32,6 +30,7 @@ public class BG_ActionRadiusController : MonoBehaviour
         if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
         {
             entity.Register(this);
+            gameObject.layer = entity.actionRadiusLayer.ToLayer();
         }
     }
 
@@ -53,6 +52,7 @@ public class BG_ActionRadiusController : MonoBehaviour
 
     private void OnDisable()
     {
+        CancelAutoSortTargets();
         if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
         {
             entity.Unregister(this);

@@ -29,6 +29,15 @@ public static class BG_BehaviorRepository
         });
     }
 
+    public static BehaviorTreeBuilder SetValidTarget(this BehaviorTreeBuilder builder,
+        string name = "Set Valid Target")
+    {
+        return builder.AddNode(new SetValidTarget
+        {
+            Name = name,
+        });
+    }
+
     public static BehaviorTreeBuilder AttackValidEntitiesInRange(this BehaviorTreeBuilder builder,
         string name = "Attack Valid Entities In Range")
     {
@@ -47,6 +56,33 @@ public static class BG_BehaviorRepository
         });
     }
 
+    public static BehaviorTreeBuilder StopMovingToObjective(this BehaviorTreeBuilder builder,
+        string name = "Stop Moving To Objective")
+    {
+        return builder.AddNode(new StopMovingToObjective
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder PerformObjectiveTask(this BehaviorTreeBuilder builder,
+        string name = "Perform Objective Task")
+    {
+        return builder.AddNode(new PerformObjectiveTask
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder AttackCurrentTarget(this BehaviorTreeBuilder builder,
+        string name = "Attack Current Target")
+    {
+        return builder.AddNode(new AttackCurrentTarget
+        {
+            Name = name,
+        });
+    }
+
     #endregion
 
     #region Custom Conditions
@@ -59,23 +95,57 @@ public static class BG_BehaviorRepository
         });
     }
 
-    public static BehaviorTreeBuilder CheckForObjectives(this BehaviorTreeBuilder builder,
-        string name = "Check For Objectives")
+    public static BehaviorTreeBuilder HasValidObjectives(this BehaviorTreeBuilder builder,
+        string name = "Has Valid Objectives")
     {
-        return builder.AddNode(new CheckForObjectives
+        return builder.AddNode(new HasValidObjectives
         {
             Name = name,
-            
         });
     }
 
-    public static BehaviorTreeBuilder CheckEntitiesInRange(this BehaviorTreeBuilder builder,
-        string name = "Check Entities In Range")
+    public static BehaviorTreeBuilder HasEntitiesInRange(this BehaviorTreeBuilder builder,
+        string name = "Has Entities In Range")
     {
-        return builder.AddNode(new CheckEntitiesInRange()
+        return builder.AddNode(new HasEntitiesInRange()
         {
             Name = name,
+        });
+    }
 
+    public static BehaviorTreeBuilder HasCurrentTarget(this BehaviorTreeBuilder builder,
+        string name = "Has Current Target")
+    {
+        return builder.AddNode(new HasCurrentTarget()
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder IsAtObjective(this BehaviorTreeBuilder builder,
+        string name = "Is At Objective")
+    {
+        return builder.AddNode(new IsAtObjective()
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder IsMovingToObjective(this BehaviorTreeBuilder builder,
+        string name = "Is Moving To Objective")
+    {
+        return builder.AddNode(new IsMovingToObjective()
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder IsCurrentTargetInRange(this BehaviorTreeBuilder builder,
+        string name = "Is Current Target In Range")
+    {
+        return builder.AddNode(new IsCurrentTargetInRange()
+        {
+            Name = name,
         });
     }
 
@@ -217,124 +287,238 @@ public class CustomInverter : DecoratorBase
     }
 }
 
-public class CheckForObjectives : ConditionBase
+public class HasValidObjectives : ConditionBase
 {
-    // Triggers only the first time this node is run (great for caching data)
+    BG_UnitController unit;
     protected override void OnInit()
     {
+        unit = Owner.GetComponent<BG_UnitController>();
     }
-
-    // Triggers every time this node starts running. Does not trigger if TaskStatus.Continue was last returned by this node
-    protected override void OnStart()
-    {
-    }
-
-    // Triggers every time `Tick()` is called on the tree and this node is run
+    
     protected override bool OnUpdate()
     {
-        // Points to the GameObject of whoever owns the behavior tree
-        if (Owner.TryGetComponent<BG_UnitController>(out var unit) && unit.goal != null)
+        if (BG_EntityManager.Instance.GetValidObjectivesCount(unit) > 0)
         {
             return true;
         }
         return false;
     }
+}
 
-    // Triggers whenever this node exits after running
-    protected override void OnExit()
+public class HasEntitiesInRange : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
     {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+    
+    protected override bool OnUpdate()
+    {
+        if (unit.actionRadiusController.storedTargets.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 
-public class CheckEntitiesInRange : ConditionBase
+public class IsAtObjective : ConditionBase
 {
-    // Triggers only the first time this node is run (great for caching data)
+    BG_UnitController unit;
     protected override void OnInit()
     {
+        unit = Owner.GetComponent<BG_UnitController>();
     }
-
-    // Triggers every time this node starts running. Does not trigger if TaskStatus.Continue was last returned by this node
-    protected override void OnStart()
-    {
-    }
-
-    // Triggers every time `Tick()` is called on the tree and this node is run
+    
     protected override bool OnUpdate()
     {
-        // Points to the GameObject of whoever owns the behavior tree
-        if (Owner.TryGetComponent<BG_UnitController>(out var unit))
+        var tempGoal = BG_EntityManager.Instance.GetClosestObjective(unit);
+        if (tempGoal != null && Vector3.Distance(unit.transform.position, tempGoal.position) <= unit.agent.stoppingDistance + 1.25f)
         {
-            if (unit.actionRadiusController.storedTargets.Count > 0)
-            {
-                return true;
-            }
-            else
-            {
-                unit.target = null;
-            }
+            return true;
         }
         return false;
     }
+}
 
-    // Triggers whenever this node exits after running
-    protected override void OnExit()
+public class IsMovingToObjective : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
     {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        if (unit.agent.hasPath)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+
+public class HasCurrentTarget : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        return unit.target != null;
+    }
+}
+
+public class IsCurrentTargetInRange : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        if (unit.target != null && unit.actionRadiusController.storedTargets.Contains(unit.target))
+        {
+            return true;
+        }
+        else
+        {
+            unit.target = null;
+            return false;
+        }
+    }
+}
+
+public class SetValidTarget : ActionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override TaskStatus OnUpdate()
+    {
+        unit.target = unit.actionRadiusController.GetClosestTarget();
+        return TaskStatus.Success;
     }
 }
 
 public class AttackValidEntitiesInRange : ActionBase
 {
-    // Triggers only the first time this node is run (great for caching data)
+    BG_UnitController unit;
     protected override void OnInit()
     {
+        unit = Owner.GetComponent<BG_UnitController>();
     }
 
-    // Triggers every time this node starts running. Does not trigger if TaskStatus.Continue was last returned by this node
-    protected override void OnStart()
-    {
-    }
-
-    // Triggers every time `Tick()` is called on the tree and this node is run
     protected override TaskStatus OnUpdate()
     {
-        if (Owner.TryGetComponent<BG_UnitController>(out var unit))
-        {
-            unit.AttackTarget();
-            return TaskStatus.Success;
-        }
-        return TaskStatus.Failure;
-    }
-
-    // Triggers whenever this node exits after running
-    protected override void OnExit()
-    {
+        //unit.PerformAttack();
+        return TaskStatus.Success;
     }
 }
 
 public class NavigateToObjective : ActionBase
 {
-    // Triggers only the first time this node is run (great for caching data)
+    BG_UnitController unit;
     protected override void OnInit()
     {
+        unit = Owner.GetComponent<BG_UnitController>();
     }
 
-    // Triggers every time this node starts running. Does not trigger if TaskStatus.Continue was last returned by this node
-    protected override void OnStart()
-    {
-    }
-
-    // Triggers every time `Tick()` is called on the tree and this node is run
     protected override TaskStatus OnUpdate()
     {
-        if (Owner.TryGetComponent<BG_UnitController>(out var unit))
+        unit.goal = BG_EntityManager.Instance.GetClosestObjective(unit);
+        unit.agent.SetDestination(unit.goal.position);
+        return TaskStatus.Success;
+    }
+
+}
+
+public class StopMovingToObjective : ActionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override TaskStatus OnUpdate()
+    {
+        unit.agent.isStopped = true;
+        unit.agent.ResetPath();
+        return TaskStatus.Success;
+    }
+}
+
+public class PerformObjectiveTask : ActionBase
+{
+    private BG_UnitController unit;
+    private BG_EntityController objective;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+        objective = unit.goal.GetComponent<BG_EntityController>();
+    }
+
+    protected override TaskStatus OnUpdate()
+    {
+        var tags = objective.attributes.tags;
+
+        if (tags.HasTag(BG_EntityTags.ObjectiveDestroy))
+        {
+            unit.target = objective.transform;
+            return TaskStatus.Success;
+        }
+        else if (tags.HasTag(BG_EntityTags.ObjectiveCapture))
         {
             return TaskStatus.Success;
         }
+        else if (tags.HasTag(BG_EntityTags.ObjectiveHold))
+        {
+            return TaskStatus.Success;
+        }
+        else if (tags.HasTag(BG_EntityTags.ObjectiveTouch))
+        {
+            return TaskStatus.Success;
+        }
+
         return TaskStatus.Failure;
     }
+}
 
-    // Triggers whenever this node exits after running
-    protected override void OnExit()
+public class AttackCurrentTarget : ActionBase
+{
+    private BG_UnitController unit;
+    protected override void OnInit()
     {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override TaskStatus OnUpdate()
+    {
+        Debug.Log($"{unit.name} attacked {unit.target.name}");
+        if (unit.target.TryGetComponent<BG_UnitController>(out var targetUnit))
+        {
+            targetUnit.TakeDamage(1);
+            return TaskStatus.Success;
+        }
+        else if (unit.target.TryGetComponent<BG_BuildingController>(out var targetBuilding))
+        {
+            targetBuilding.TakeDamage(1);
+            return TaskStatus.Success;
+        }
+        return TaskStatus.Failure;
     }
 }

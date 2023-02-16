@@ -42,15 +42,15 @@ public class BG_EntityManager : MonoBehaviour
                 break;
         }
         
-        var tags = entity.attributes.tags;
-        if (tags.HasTag(BG_EntityTags.Objective))
-        {
-            NotifySubscribeObjective(entity);
-        }
-        if (tags.HasTag(BG_EntityTags.ObjectiveSeeker))
-        {
-            SubscribeObjective(entity);
-        }
+        //var tags = entity.attributes.tags;
+        //if (tags.HasTag(BG_EntityTags.Objective))
+        //{
+        //    NotifySubscribeObjective(entity);
+        //}
+        //if (tags.HasTag(BG_EntityTags.ObjectiveSeeker))
+        //{
+        //    SubscribeObjective(entity);
+        //}
     }
 
     public void Unregister(BG_EntityController entity)
@@ -68,53 +68,83 @@ public class BG_EntityManager : MonoBehaviour
                 break;
         }
 
-        var tags = entity.attributes.tags;
-        if (tags.HasTag(BG_EntityTags.Objective))
-        {
-            NotifyUnsubscribeObjective(entity);
-        }
+        //var tags = entity.attributes.tags;
+        //if (tags.HasTag(BG_EntityTags.Objective))
+        //{
+        //    NotifyUnsubscribeObjective(entity);
+        //}
     }
 
     private void SubscribeObjective(BG_EntityController entity)
+    {
+        //IEnumerable<BG_EntityController> unitObjectives = units.Where(u =>
+        //    u.HasTag(BG_EntityTags.Objective) &&
+        //    BG_EntityTags.Faction.IsOpposingTag(u, entity));
+
+        //IEnumerable<BG_EntityController> buildingObjectives = buildings.Where(b => 
+        //    b.HasTag(BG_EntityTags.Objective) &&
+        //    BG_EntityTags.Faction.IsOpposingTag(b, entity));
+
+        //var objectives = unitObjectives.Concat(buildingObjectives).ToList();
+
+        //foreach (var objective in objectives)
+        //{
+        //    ((BG_UnitController)entity).SetGoal(objective.transform);
+        //}
+    }
+
+    private void NotifySubscribeObjective(BG_EntityController objective)
+    {
+        //var objectiveSeekers = units.Where(u =>
+        //    u.HasTag(BG_EntityTags.ObjectiveSeeker) &&
+        //    BG_EntityTags.Faction.IsOpposingTag(u, objective));
+
+        //foreach (var objectiveSeeker in objectiveSeekers)
+        //{
+        //    objectiveSeeker.SetGoal(objective.transform);
+        //}
+    }
+
+    private void NotifyUnsubscribeObjective(BG_EntityController objective)
+    {
+        //var objectiveSeekers = units.Where(u => 
+        //    u.HasTag(BG_EntityTags.ObjectiveSeeker) && 
+        //    BG_EntityTags.Faction.IsOpposingTag(u, objective) &&
+        //    u.goal == objective.transform);
+
+        //foreach (var objectiveSeeker in objectiveSeekers)
+        //{
+        //    objectiveSeeker.goal = null;
+        //}
+    }
+
+    public int GetValidObjectivesCount(BG_EntityController entity)
     {
         IEnumerable<BG_EntityController> unitObjectives = units.Where(u =>
             u.HasTag(BG_EntityTags.Objective) &&
             BG_EntityTags.Faction.IsOpposingTag(u, entity));
 
-        IEnumerable<BG_EntityController> buildingObjectives = buildings.Where(b => 
+        IEnumerable<BG_EntityController> buildingObjectives = buildings.Where(b =>
+            b.HasTag(BG_EntityTags.Objective) &&
+            BG_EntityTags.Faction.IsOpposingTag(b, entity));
+
+        var objectives = unitObjectives.Concat(buildingObjectives);
+
+        return objectives.Count();
+    }
+
+    public Transform GetClosestObjective(BG_EntityController entity)
+    {
+        IEnumerable<BG_EntityController> unitObjectives = units.Where(u =>
+            u.HasTag(BG_EntityTags.Objective) &&
+            BG_EntityTags.Faction.IsOpposingTag(u, entity));
+
+        IEnumerable<BG_EntityController> buildingObjectives = buildings.Where(b =>
             b.HasTag(BG_EntityTags.Objective) &&
             BG_EntityTags.Faction.IsOpposingTag(b, entity));
 
         var objectives = unitObjectives.Concat(buildingObjectives).ToList();
 
-        foreach (var objective in objectives)
-        {
-            ((BG_UnitController)entity).SetGoal(objective.transform);
-        }
-    }
-
-    private void NotifySubscribeObjective(BG_EntityController objective)
-    {
-        var objectiveSeekers = units.Where(u =>
-            u.HasTag(BG_EntityTags.ObjectiveSeeker) &&
-            BG_EntityTags.Faction.IsOpposingTag(u, objective));
-
-        foreach (var objectiveSeeker in objectiveSeekers)
-        {
-            objectiveSeeker.SetGoal(objective.transform);
-        }
-    }
-
-    private void NotifyUnsubscribeObjective(BG_EntityController objective)
-    {
-        var objectiveSeekers = units.Where(u => 
-            u.HasTag(BG_EntityTags.ObjectiveSeeker) && 
-            BG_EntityTags.Faction.IsOpposingTag(u, objective) &&
-            u.goal == objective.transform);
-
-        foreach (var objectiveSeeker in objectiveSeekers)
-        {
-            objectiveSeeker.goal = null;
-        }
+        return objectives.FirstOrDefault()?.transform;
     }
 }
