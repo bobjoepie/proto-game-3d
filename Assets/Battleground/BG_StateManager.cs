@@ -88,11 +88,11 @@ public class BG_StateManager : MonoBehaviour, IInputController
         StartTurn();
     }
 
-    public void WaitForConfirmAction(Action<Vector3> action)
+    public void QueuePlayerConfirmAction(Action<Vector3> action)
     {
         if (currentTurnOwner is BG_PlayerTurnController controller)
         {
-            controller.WaitForConfirmAction(action);
+            controller.QueuePlayerConfirmAction(action);
         }
     }
 
@@ -105,7 +105,6 @@ public class BG_StateManager : MonoBehaviour, IInputController
     public void Register(BG_TurnController turnController)
     {
         turnOwners.Add(turnController);
-        turnController.stateManager = this;
     }
 
     public void Unregister(BG_TurnController turnController)

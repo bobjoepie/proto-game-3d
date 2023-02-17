@@ -118,7 +118,7 @@ public class BG_EntityManager : MonoBehaviour
         //}
     }
 
-    public int GetValidObjectivesCount(BG_EntityController entity)
+    public int GetValidOpposingObjectivesCount(BG_EntityController entity)
     {
         IEnumerable<BG_EntityController> unitObjectives = units.Where(u =>
             u.HasTag(BG_EntityTags.Objective) &&
@@ -133,7 +133,7 @@ public class BG_EntityManager : MonoBehaviour
         return objectives.Count();
     }
 
-    public Transform GetClosestObjective(BG_EntityController entity)
+    public Transform GetClosestOpposingObjective(BG_EntityController entity)
     {
         IEnumerable<BG_EntityController> unitObjectives = units.Where(u =>
             u.HasTag(BG_EntityTags.Objective) &&
@@ -146,5 +146,35 @@ public class BG_EntityManager : MonoBehaviour
         var objectives = unitObjectives.Concat(buildingObjectives).ToList();
 
         return objectives.FirstOrDefault()?.transform;
+    }
+
+    public Transform GetClosestOwnObjective(BG_EntityController entity)
+    {
+        IEnumerable<BG_EntityController> unitObjectives = units.Where(u =>
+            u.HasTag(BG_EntityTags.Objective) &&
+            BG_EntityTags.Faction.IsSameTag(u, entity));
+
+        IEnumerable<BG_EntityController> buildingObjectives = buildings.Where(b =>
+            b.HasTag(BG_EntityTags.Objective) &&
+            BG_EntityTags.Faction.IsSameTag(b, entity));
+
+        var objectives = unitObjectives.Concat(buildingObjectives).ToList();
+
+        return objectives.FirstOrDefault()?.transform;
+    }
+
+    public List<BG_EntityController> GetAllOwnObjectives(BG_EntityTags faction)
+    {
+        IEnumerable<BG_EntityController> unitObjectives = units.Where(u =>
+            u.HasTag(BG_EntityTags.Objective) &&
+            BG_EntityTags.Faction.IsSameTag(u.attributes.tags, faction));
+
+        IEnumerable<BG_EntityController> buildingObjectives = buildings.Where(b =>
+            b.HasTag(BG_EntityTags.Objective) &&
+            BG_EntityTags.Faction.IsSameTag(b.attributes.tags, faction));
+
+        var objectives = unitObjectives.Concat(buildingObjectives).ToList();
+
+        return objectives;
     }
 }

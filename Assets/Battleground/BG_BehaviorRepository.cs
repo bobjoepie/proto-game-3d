@@ -83,6 +83,15 @@ public static class BG_BehaviorRepository
         });
     }
 
+    public static BehaviorTreeBuilder BecomeIdle(this BehaviorTreeBuilder builder,
+        string name = "BecomeIdle")
+    {
+        return builder.AddNode(new BecomeIdle
+        {
+            Name = name,
+        });
+    }
+
     #endregion
 
     #region Custom Conditions
@@ -297,7 +306,7 @@ public class HasValidObjectives : ConditionBase
     
     protected override bool OnUpdate()
     {
-        if (BG_EntityManager.Instance.GetValidObjectivesCount(unit) > 0)
+        if (BG_EntityManager.Instance.GetValidOpposingObjectivesCount(unit) > 0)
         {
             return true;
         }
@@ -336,7 +345,7 @@ public class IsAtObjective : ConditionBase
     
     protected override bool OnUpdate()
     {
-        var tempGoal = BG_EntityManager.Instance.GetClosestObjective(unit);
+        var tempGoal = BG_EntityManager.Instance.GetClosestOpposingObjective(unit);
         if (tempGoal != null && Vector3.Distance(unit.transform.position, tempGoal.position) <= unit.agent.stoppingDistance + 1.25f)
         {
             return true;
@@ -439,8 +448,9 @@ public class NavigateToObjective : ActionBase
 
     protected override TaskStatus OnUpdate()
     {
-        unit.goal = BG_EntityManager.Instance.GetClosestObjective(unit);
+        unit.goal = BG_EntityManager.Instance.GetClosestOpposingObjective(unit);
         unit.agent.SetDestination(unit.goal.position);
+        unit.animator.ChangeAnimationState("Walk");
         return TaskStatus.Success;
     }
 
@@ -458,6 +468,7 @@ public class StopMovingToObjective : ActionBase
     {
         unit.agent.isStopped = true;
         unit.agent.ResetPath();
+        unit.animator.ChangeAnimationState("Idle");
         return TaskStatus.Success;
     }
 }
@@ -512,13 +523,30 @@ public class AttackCurrentTarget : ActionBase
         if (unit.target.TryGetComponent<BG_UnitController>(out var targetUnit))
         {
             targetUnit.TakeDamage(1);
+            unit.animator.PlayAnimationStateOneShot("Attack");
             return TaskStatus.Success;
         }
         else if (unit.target.TryGetComponent<BG_BuildingController>(out var targetBuilding))
         {
             targetBuilding.TakeDamage(1);
+            unit.animator.PlayAnimationStateOneShot("Attack");
             return TaskStatus.Success;
         }
         return TaskStatus.Failure;
+    }
+}
+
+public class BecomeIdle : ActionBase
+{
+    private BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override TaskStatus OnUpdate()
+    {
+        unit.animator.ChangeAnimationState("Idle");
+        return TaskStatus.Success;
     }
 }

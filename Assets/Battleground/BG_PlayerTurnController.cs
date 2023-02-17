@@ -45,6 +45,7 @@ public class BG_PlayerTurnController : BG_TurnController, IInputController
             CheckInputs();
         }
     }
+
     public override void StartTurn()
     {
         isCurrentTurn = true;
@@ -133,7 +134,7 @@ public class BG_PlayerTurnController : BG_TurnController, IInputController
         }
     }
 
-    public void WaitForConfirmAction(Action<Vector3> action)
+    public void QueuePlayerConfirmAction(Action<Vector3> action)
     {
         isWaitingForConfirmation = true;
         actionToConfirm = action;

@@ -103,6 +103,20 @@ public static class PoloUtils
     {
         return IsOpposingTag(parentTag, entity1.attributes.tags, entity2.attributes.tags);
     }
+
+    public static bool IsSameTag(this BG_EntityTags parentTag, BG_EntityTags tag1, BG_EntityTags tag2)
+    {
+        var matchParents = MatchParentTag(parentTag, tag1, tag2);
+        var childTag1 = tag1.GetTagUnderParent(parentTag);
+        var childTag2 = tag2.GetTagUnderParent(parentTag);
+        var isSameTag = childTag1.HasTag(childTag2);
+        return matchParents && isSameTag;
+    }
+
+    public static bool IsSameTag(this BG_EntityTags parentTag, BG_EntityController entity1, BG_EntityController entity2)
+    {
+        return IsSameTag(parentTag, entity1.attributes.tags, entity2.attributes.tags);
+    }
 }
 
 public static class LayerUtility

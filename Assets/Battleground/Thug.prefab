@@ -1207,10 +1207,10 @@ MonoBehaviour:
   internalName: 
   collisionLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   actionRadiusLayer:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 0
   pickupSprite: {fileID: 0}
   pickupGameObject: {fileID: 0}
   pickupAudioClip: {fileID: 0}
@@ -1219,12 +1219,12 @@ MonoBehaviour:
   icon: {fileID: 0}
   attributes:
     name: 
-    tags: 33
+    tags: 0
     curLevel: 0
     curExperience: 0
     expToLevel: 0
     curHealth: 0
-    maxHealth: 3
+    maxHealth: 0
     actionSpeed: 0
     moveSpeed: 0
     attackSpeed: 0

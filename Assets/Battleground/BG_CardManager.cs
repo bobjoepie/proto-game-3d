@@ -25,7 +25,6 @@ public class BG_CardManager : MonoBehaviour
         Instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         stateManager = BG_StateManager.Instance;
@@ -33,12 +32,6 @@ public class BG_CardManager : MonoBehaviour
         mainCamera = Camera.main;
 
         ConvertDeckData();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void ConvertDeckData()
@@ -96,10 +89,15 @@ public class BG_CardManager : MonoBehaviour
                     {
                         var entity = cardSummon.unitData.entityGameObject;
                         cardSummon.unitData.ConvertData(entity);
-                        Instantiate(entity, pos, Quaternion.identity);
+                        var instance = Instantiate(entity, pos, Quaternion.identity);
+                        instance.attributes.tags |= BG_EntityTags.FactionPlayer;
+                        instance.attributes.tags |= BG_EntityTags.ObjectiveSeeker;
+                        instance.attributes.maxHealth = 3;
+                        instance.collisionLayer = LayerMask.GetMask("PlayerCollider");
+                        instance.actionRadiusLayer = LayerMask.GetMask("PlayerActionRadius");
                         DiscardCard(card);
                     };
-                    stateManager.WaitForConfirmAction(summon);
+                    stateManager.QueuePlayerConfirmAction(summon);
                     break;
             }
         }

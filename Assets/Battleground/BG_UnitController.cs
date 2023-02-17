@@ -64,10 +64,8 @@ public class BG_UnitController : BG_EntityController
                     //.End()
                 .End()
 
-                .Sequence("Handle Misc")
-                    .ReturnSuccess()
-                        .HasEntitiesInRange()  
-                    .End()
+                .Sequence("Handle Idle")
+                    .BecomeIdle() 
                 .End()
             .End()
             .Build();
@@ -84,6 +82,7 @@ public class BG_UnitController : BG_EntityController
     {
         while (!token.IsCancellationRequested)
         {
+            await UniTask.NextFrame(token);
             behaviorTree.Tick();
             await UniTask.Delay(TimeSpan.FromSeconds(behaviorFrequency), cancellationToken: token);
         }

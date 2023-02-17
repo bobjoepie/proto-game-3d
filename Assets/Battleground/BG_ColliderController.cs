@@ -9,6 +9,13 @@ public class BG_ColliderController : MonoBehaviour
         if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
         {
             entity.Register(this);
+        }
+    }
+
+    private void Start()
+    {
+        if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
+        {
             gameObject.layer = entity.collisionLayer.ToLayer();
         }
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -16,6 +17,11 @@ public class BG_AnimatorController : MonoBehaviour
     public void ChangeAnimationState(string state)
     {
         animator.CrossFade(state, 0.05f);
+    }
+
+    public void PlayAnimationStateOneShot(string state)
+    {
+        animator.Play(state);
     }
 
     private void OnEnable()

@@ -30,6 +30,13 @@ public class BG_ActionRadiusController : MonoBehaviour
         if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
         {
             entity.Register(this);
+        }
+    }
+
+    private void Start()
+    {
+        if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
+        {
             gameObject.layer = entity.actionRadiusLayer.ToLayer();
         }
     }
@@ -119,8 +126,9 @@ public class BG_ActionRadiusController : MonoBehaviour
         var target = storedTargets.FirstOrDefault();
         if (target == null)
         {
-            ClearTargets();
-            FillTargets();
+            //ClearTargets();
+            //FillTargets();
+            SortTargets();
             target = storedTargets.FirstOrDefault();
         }
 
