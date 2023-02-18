@@ -16,7 +16,7 @@ public class BG_UnitController : BG_EntityController
     public NavMeshAgent agent;
     public Transform goal;
     public Transform target;
-    public int behaviorFrequency = 1;
+    public float behaviorFrequency = 1f;
 
     private CancellationTokenSource cancellationToken;
 
@@ -34,10 +34,32 @@ public class BG_UnitController : BG_EntityController
         behaviorTree = new BehaviorTreeBuilder(gameObject)
             .Selector()
                 .Selector("Handle Attacks")
-                    .Sequence()
+                    .Sequence("Handle Melee Attacks")
+                        .IsMelee()
                         .HasCurrentTarget()
-                        .IsCurrentTargetInRange()
+                        .IsCurrentTargetInActionRadius()
+                        .IsCurrentTargetInMeleeRange()
                         .AttackCurrentTarget()
+                    .End()
+                    .Sequence("Move To Melee Range")
+                        .IsMelee()
+                        .HasCurrentTarget()
+                        .Inverter().IsCurrentTargetInMeleeRange().End()
+                        .NavigateToTarget()
+                    .End()
+                    .Sequence("Handle Ranged Attacks")
+                        .IsRanged()
+                        .HasCurrentTarget()
+                        .IsCurrentTargetInActionRadius()
+                        .IsCurrentTargetInRangedRange()
+                        .StopMoving()
+                        .AttackCurrentTarget()
+                    .End()
+                    .Sequence("Move To Ranged Range")
+                        .IsRanged()
+                        .HasCurrentTarget()
+                        .Inverter().IsCurrentTargetInRangedRange().End()
+                        .NavigateToTarget()
                     .End()
                     .Sequence()
                         .HasEntitiesInRange()
@@ -65,6 +87,7 @@ public class BG_UnitController : BG_EntityController
                 .End()
 
                 .Sequence("Handle Idle")
+                    .StopMoving()
                     .BecomeIdle() 
                 .End()
             .End()

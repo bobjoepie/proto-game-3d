@@ -84,9 +84,27 @@ public static class BG_BehaviorRepository
     }
 
     public static BehaviorTreeBuilder BecomeIdle(this BehaviorTreeBuilder builder,
-        string name = "BecomeIdle")
+        string name = "Become Idle")
     {
         return builder.AddNode(new BecomeIdle
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder NavigateToTarget(this BehaviorTreeBuilder builder,
+        string name = "Navigate To Target")
+    {
+        return builder.AddNode(new NavigateToTarget
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder StopMoving(this BehaviorTreeBuilder builder,
+        string name = "Stop Moving")
+    {
+        return builder.AddNode(new StopMoving
         {
             Name = name,
         });
@@ -149,10 +167,46 @@ public static class BG_BehaviorRepository
         });
     }
 
-    public static BehaviorTreeBuilder IsCurrentTargetInRange(this BehaviorTreeBuilder builder,
-        string name = "Is Current Target In Range")
+    public static BehaviorTreeBuilder IsCurrentTargetInActionRadius(this BehaviorTreeBuilder builder,
+        string name = "Is Current Target In Action Radius")
     {
-        return builder.AddNode(new IsCurrentTargetInRange()
+        return builder.AddNode(new IsCurrentTargetInActionRadius()
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder IsMelee(this BehaviorTreeBuilder builder,
+        string name = "Is Melee")
+    {
+        return builder.AddNode(new IsMelee()
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder IsCurrentTargetInMeleeRange(this BehaviorTreeBuilder builder,
+        string name = "Is Current Target In Melee Range")
+    {
+        return builder.AddNode(new IsCurrentTargetInMeleeRange()
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder IsRanged(this BehaviorTreeBuilder builder,
+        string name = "Is Ranged")
+    {
+        return builder.AddNode(new IsRanged()
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder IsCurrentTargetInRangedRange(this BehaviorTreeBuilder builder,
+        string name = "Is Current Target In Ranged Range")
+    {
+        return builder.AddNode(new IsCurrentTargetInRangedRange()
         {
             Name = name,
         });
@@ -386,7 +440,7 @@ public class HasCurrentTarget : ConditionBase
     }
 }
 
-public class IsCurrentTargetInRange : ConditionBase
+public class IsCurrentTargetInActionRadius : ConditionBase
 {
     BG_UnitController unit;
     protected override void OnInit()
@@ -403,6 +457,90 @@ public class IsCurrentTargetInRange : ConditionBase
         else
         {
             unit.target = null;
+            return false;
+        }
+    }
+}
+
+public class IsMelee : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        if (unit.meleeRadiusController != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+public class IsCurrentTargetInMeleeRange : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        if (unit.target != null && unit.meleeRadiusController.IsWithinMeleeRange(unit.target.transform.position))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+public class IsRanged : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        if (unit.rangedRadiusController != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+public class IsCurrentTargetInRangedRange : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        if (unit.target != null && unit.rangedRadiusController.IsWithinRangedRange(unit.target.transform.position))
+        {
+            return true;
+        }
+        else
+        {
             return false;
         }
     }
@@ -547,6 +685,37 @@ public class BecomeIdle : ActionBase
     protected override TaskStatus OnUpdate()
     {
         unit.animator.ChangeAnimationState("Idle");
+        return TaskStatus.Success;
+    }
+}
+
+public class NavigateToTarget : ActionBase
+{
+    private BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override TaskStatus OnUpdate()
+    {
+        unit.agent.SetDestination(unit.target.position);
+        unit.animator.ChangeAnimationState("Walk");
+        return TaskStatus.Success;
+    }
+}
+
+public class StopMoving : ActionBase
+{
+    private BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override TaskStatus OnUpdate()
+    {
+        unit.agent.ResetPath();
         return TaskStatus.Success;
     }
 }

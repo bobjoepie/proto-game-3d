@@ -92,7 +92,7 @@ public class BG_CardManager : MonoBehaviour
                         var instance = Instantiate(entity, pos, Quaternion.identity);
                         instance.attributes.tags |= BG_EntityTags.FactionPlayer;
                         instance.attributes.tags |= BG_EntityTags.ObjectiveSeeker;
-                        instance.attributes.maxHealth = 3;
+                        instance.attributes.maxHealth = 10;
                         instance.collisionLayer = LayerMask.GetMask("PlayerCollider");
                         instance.actionRadiusLayer = LayerMask.GetMask("PlayerActionRadius");
                         DiscardCard(card);

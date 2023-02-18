@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1760231370040421584}
-  - component: {fileID: 1760231370040421585}
+  - component: {fileID: 274115696365870090}
   - component: {fileID: 3831761433528338184}
   m_Layer: 0
   m_Name: Collider
@@ -223,8 +223,8 @@ Transform:
   m_Father: {fileID: 8675515702713655039}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1760231370040421585
-BoxCollider:
+--- !u!136 &274115696365870090
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -233,8 +233,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3831761433528338184
 MonoBehaviour:
@@ -312,6 +313,65 @@ Transform:
   m_Father: {fileID: 2452748924375333110}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2319061356201967007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3496377659479267898}
+  - component: {fileID: 4510020582095577499}
+  - component: {fileID: 1737936315858887852}
+  m_Layer: 0
+  m_Name: MeleeRadius
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3496377659479267898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2319061356201967007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8675515702713655039}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4510020582095577499
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2319061356201967007}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1737936315858887852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2319061356201967007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064207933c69e8b46a725c37ac53e3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeRadius: {fileID: 0}
 --- !u!1 &2806685276637088950
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +403,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8675515702713655039}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &5413036714831308297
 SphereCollider:
@@ -1182,6 +1242,7 @@ Transform:
   m_Children:
   - {fileID: 9218629758708433679}
   - {fileID: 1760231370040421584}
+  - {fileID: 3496377659479267898}
   - {fileID: 4037287605176004003}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1204,6 +1265,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   actionRadiusController: {fileID: 0}
   colliderController: {fileID: 0}
+  meleeRadiusController: {fileID: 0}
+  rangedRadiusController: {fileID: 0}
   internalName: 
   collisionLayer:
     serializedVersion: 2
@@ -1240,7 +1303,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   goal: {fileID: 0}
   target: {fileID: 0}
-  behaviorFrequency: 1
+  behaviorFrequency: 0.2
 --- !u!195 &6359043905655292492
 NavMeshAgent:
   m_ObjectHideFlags: 0

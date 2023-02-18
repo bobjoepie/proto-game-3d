@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c8fab3c8a9e818498bb3ef8f318c772, type: 3}
-  m_Name: card_behavior_summon
+  m_Name: card_behavior_summon_firesworn
   m_EditorClassIdentifier: 
   internalName: 
-  unitData: {fileID: 11400000, guid: e27d3d0bbaa64d84f8b8e8c588d16f63, type: 2}
+  unitData: {fileID: 11400000, guid: 6846339c53e6443418d52ccc39aba21e, type: 2}

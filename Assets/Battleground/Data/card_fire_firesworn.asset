@@ -15,7 +15,8 @@ MonoBehaviour:
   cardName: Firesworn
   cardTier: 2
   cardCost: 50
-  entityData: {fileID: 0}
+  castBehaviors:
+  - {fileID: 11400000, guid: 8a3a2767b2f490b46bf11c22e8b63954, type: 2}
   pickupSprite: {fileID: 0}
   pickupGameObject: {fileID: 0}
   pickupAudioClip: {fileID: 0}

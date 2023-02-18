@@ -24,6 +24,7 @@ public class BG_HUD_Card : Button
         card.cardHud = this;
         this.cardController = card;
         this.text = card.cardName;
+        this.focusable = false;
         this.clickable.clicked += () =>
         {
             action.Invoke();

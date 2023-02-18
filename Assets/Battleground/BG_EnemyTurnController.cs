@@ -43,7 +43,7 @@ public class BG_EnemyTurnController : BG_TurnController
                     PlayCard(card, spawner.transform.position);
                 }
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(2));
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
             EndTurn();
 
         }).Invoke();
@@ -67,7 +67,7 @@ public class BG_EnemyTurnController : BG_TurnController
                     var instance = Instantiate(entity, pos, Quaternion.identity);
                     instance.attributes.tags |= BG_EntityTags.FactionEnemy;
                     instance.attributes.tags |= BG_EntityTags.ObjectiveSeeker;
-                    instance.attributes.maxHealth = 3;
+                    instance.attributes.maxHealth = 10;
                     instance.collisionLayer = LayerMask.GetMask("EnemyCollider");
                     instance.actionRadiusLayer = LayerMask.GetMask("EnemyActionRadius");
                     break;

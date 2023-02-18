@@ -15,6 +15,8 @@ public class BG_EntityController : MonoBehaviour
     public BG_AnimatorController animator;
     public BG_ActionRadiusController actionRadiusController;
     public BG_ColliderController colliderController;
+    public BG_MeleeRadiusController meleeRadiusController;
+    public BG_RangedRadiusController rangedRadiusController;
 
     [Header("Properties")]
     public string internalName;
@@ -58,6 +60,12 @@ public class BG_EntityController : MonoBehaviour
             case BG_ColliderController co:
                 colliderController = co;
                 break;
+            case BG_MeleeRadiusController mr:
+                meleeRadiusController = mr;
+                break;
+            case BG_RangedRadiusController rr:
+                rangedRadiusController = rr;
+                break;
         }
     }
 
@@ -73,6 +81,12 @@ public class BG_EntityController : MonoBehaviour
                 break;
             case BG_ColliderController co:
                 colliderController = null;
+                break;
+            case BG_MeleeRadiusController mr:
+                meleeRadiusController = null;
+                break;
+            case BG_RangedRadiusController rr:
+                rangedRadiusController = null;
                 break;
         }
     }
