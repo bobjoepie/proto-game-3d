@@ -1107,7 +1107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7915173759034023065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.25063, y: 0.00000071525574, z: 4.4653697}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1168,13 +1168,11 @@ MonoBehaviour:
     luck: 0
     physRes: 0
     elemRes: 0
-  unitBehaviors:
-  - {fileID: 11400000, guid: b00efb28e5568c44cbc9b8512510a9bd, type: 2}
-  - {fileID: 11400000, guid: 0a869dbf6bdf05940bef7a7859acb708, type: 2}
+  unitBehaviors: []
   agent: {fileID: 0}
   goal: {fileID: 0}
   target: {fileID: 0}
-  behaviorFrequency: 0.2
+  behaviorFrequency: 5
 --- !u!195 &5585056949790507049
 NavMeshAgent:
   m_ObjectHideFlags: 0

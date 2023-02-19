@@ -1303,7 +1303,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   goal: {fileID: 0}
   target: {fileID: 0}
-  behaviorFrequency: 0.2
+  behaviorFrequency: 5
 --- !u!195 &6359043905655292492
 NavMeshAgent:
   m_ObjectHideFlags: 0

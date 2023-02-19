@@ -11,7 +11,7 @@ public class BG_ActionRadiusController : MonoBehaviour
     public List<Transform> storedTargets = new List<Transform>();
     public bool isManagingTargets = true;
     public bool autoSortEnabled = true;
-    public int autoSortFrequency = 5;
+    public float autoSortFrequency = 5f;
 
     private CancellationTokenSource cancellationToken;
     private SphereCollider sphereCollider;
@@ -124,26 +124,48 @@ public class BG_ActionRadiusController : MonoBehaviour
     public Transform GetClosestTarget()
     {
         var target = storedTargets.FirstOrDefault();
-        if (target == null)
-        {
-            //ClearTargets();
-            //FillTargets();
-            SortTargets();
-            target = storedTargets.FirstOrDefault();
-        }
-
         return target;
     }
 
     public List<Transform> GetClosestTargets(int num)
     {
-        var targets = storedTargets.GetRange(0, num);
-        if (targets.Contains(null))
-        {
-            ClearTargets();
-            FillTargets();
-            targets = storedTargets.GetRange(0, num);
-        }
+        var targets = storedTargets.Where(c => c != null)
+            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
+            .Take(num)
+            .ToList();
+
         return targets;
+    }
+
+    public Transform GetClosestTargetInLineOfSight()
+    {
+        var origin = transform.root.position;
+        var target = storedTargets.Where(c =>
+            {
+                if (c == null) return false;
+                var hasObstacleInLineOfSight = Physics.Linecast(origin, c.position, out var hits, LayerUtility.Only("Default"));
+                //if (hasObstacleInLineOfSight) Debug.Log($"{transform.root.name} blocked by {hits.transform.name} trying to hit {c.name}");
+                return !hasObstacleInLineOfSight;
+            })
+            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
+            .FirstOrDefault();
+
+        return target;
+    }
+
+    public List<Transform> GetClosestTargetsInLineOfSight(int num)
+    {
+        var origin = transform.root.position;
+        var targets = storedTargets.Where(c => c != null && Physics.Raycast(origin, c.position, sphereCollider.radius, LayerUtility.Only("Default")))
+            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
+            .Take(num)
+            .ToList();
+
+        return targets;
+    }
+
+    public bool IsValidTarget(Transform target)
+    {
+        return storedTargets.Contains(target);
     }
 }

@@ -10,6 +10,93 @@ using UnityEngine.AI;
 
 public static class BG_BehaviorRepository
 {
+    #region Custom Behavior Trees
+
+    public static BehaviorTreeBuilder UnitHandleAttacks(this BehaviorTreeBuilder builder, GameObject entity)
+    {
+        var injectTree = new BehaviorTreeBuilder(entity)
+            .Selector("Handle Attacks")
+                .Sequence("Perform Melee Attacks")
+                    .IsMelee()
+                    .HasCurrentTarget()
+                    .IsCurrentTargetInActionRadius()
+                    .IsCurrentTargetInMeleeRange()
+                    .AttackCurrentTarget()
+                .End()
+                .Sequence("Move To Melee Range")
+                    .IsMelee()
+                    .HasCurrentTarget()
+                    .Inverter().IsCurrentTargetInMeleeRange().End()
+                    .NavigateToTarget()
+                .End()
+                .Sequence("Perform Ranged Attacks")
+                    .IsRanged()
+                    .HasCurrentTarget()
+                    .IsCurrentTargetInActionRadius()
+                    .IsCurrentTargetInRangedRange()
+                    .IsCurrentTargetInLineOfSight()
+                    .StopMoving()
+                    .AttackCurrentTarget()
+                .End()
+                .Sequence("Move To Ranged Range")
+                    .IsRanged()
+                    .HasCurrentTarget()
+                    .Inverter().IsCurrentTargetInRangedRange().End()
+                    .NavigateToTarget()
+                .End()
+            .End();
+        return builder.Splice(injectTree.Build());
+    }
+
+    public static BehaviorTreeBuilder UnitHandleTargeting(this BehaviorTreeBuilder builder, GameObject entity)
+    {
+        var injectTree = new BehaviorTreeBuilder(entity)
+            .Selector("Handle Targeting")
+                .Sequence("Ranged Line Of Sight Targeting")
+                    .IsRanged()
+                    .HasEntitiesInRange()
+                    .HasEntitiesInLineOfSight()
+                    .SetValidTargetInLineOfSight()
+                .End()
+                .Sequence("Melee Targeting")
+                    .IsMelee()
+                    .HasEntitiesInRange()
+                    .SetValidTarget()
+                .End()
+            .End();
+        return builder.Splice(injectTree.Build());
+    }
+
+    public static BehaviorTreeBuilder UnitHandleObjectives(this BehaviorTreeBuilder builder, GameObject entity)
+    {
+        var injectTree = new BehaviorTreeBuilder(entity)
+            .Selector("Handle Objectives")
+                .Sequence("Perform Objective Tasks")
+                    .IsAtObjective()
+                    .PerformObjectiveTask()
+                .End()
+
+                .Sequence("Move To Objectives")
+                    .HasValidObjectives()
+                    .Inverter().IsAtObjective().End()
+                    .NavigateToObjective()
+                .End()
+            .End();
+        return builder.Splice(injectTree.Build());
+    }
+
+    public static BehaviorTreeBuilder UnitHandleIdle(this BehaviorTreeBuilder builder, GameObject entity)
+    {
+        var injectTree = new BehaviorTreeBuilder(entity)
+            .Sequence("Handle Idle")
+                .StopMoving()
+                .BecomeIdle()
+            .End();
+        return builder.Splice(injectTree.Build());
+    }
+
+    #endregion
+
     #region Custom Actions
 
     public static BehaviorTreeBuilder CustomAction(this BehaviorTreeBuilder builder, string name = "My Action")
@@ -33,6 +120,15 @@ public static class BG_BehaviorRepository
         string name = "Set Valid Target")
     {
         return builder.AddNode(new SetValidTarget
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder SetValidTargetInLineOfSight(this BehaviorTreeBuilder builder,
+        string name = "Set Valid Target In Line Of Sight")
+    {
+        return builder.AddNode(new SetValidTargetInLineOfSight
         {
             Name = name,
         });
@@ -140,6 +236,15 @@ public static class BG_BehaviorRepository
         });
     }
 
+    public static BehaviorTreeBuilder HasEntitiesInLineOfSight(this BehaviorTreeBuilder builder,
+        string name = "Has Entities In Line Of Sight")
+    {
+        return builder.AddNode(new HasEntitiesInLineOfSight()
+        {
+            Name = name,
+        });
+    }
+
     public static BehaviorTreeBuilder HasCurrentTarget(this BehaviorTreeBuilder builder,
         string name = "Has Current Target")
     {
@@ -207,6 +312,15 @@ public static class BG_BehaviorRepository
         string name = "Is Current Target In Ranged Range")
     {
         return builder.AddNode(new IsCurrentTargetInRangedRange()
+        {
+            Name = name,
+        });
+    }
+
+    public static BehaviorTreeBuilder IsCurrentTargetInLineOfSight(this BehaviorTreeBuilder builder,
+        string name = "Is Current Target In Line Of Sight")
+    {
+        return builder.AddNode(new IsCurrentTargetInLineOfSight()
         {
             Name = name,
         });
@@ -378,7 +492,28 @@ public class HasEntitiesInRange : ConditionBase
     
     protected override bool OnUpdate()
     {
-        if (unit.actionRadiusController.storedTargets.Count > 0)
+        if (unit.actionRadiusController.GetClosestTarget() != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+public class HasEntitiesInLineOfSight : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        if (unit.actionRadiusController.GetClosestTargetInLineOfSight() != null)
         {
             return true;
         }
@@ -450,7 +585,7 @@ public class IsCurrentTargetInActionRadius : ConditionBase
 
     protected override bool OnUpdate()
     {
-        if (unit.target != null && unit.actionRadiusController.storedTargets.Contains(unit.target))
+        if (unit.target != null && unit.actionRadiusController.IsValidTarget(unit.target))
         {
             return true;
         }
@@ -493,7 +628,7 @@ public class IsCurrentTargetInMeleeRange : ConditionBase
 
     protected override bool OnUpdate()
     {
-        if (unit.target != null && unit.meleeRadiusController.IsWithinMeleeRange(unit.target.transform.position))
+        if (unit.target != null && unit.meleeRadiusController.IsWithinMeleeRange(unit.target))
         {
             return true;
         }
@@ -535,7 +670,7 @@ public class IsCurrentTargetInRangedRange : ConditionBase
 
     protected override bool OnUpdate()
     {
-        if (unit.target != null && unit.rangedRadiusController.IsWithinRangedRange(unit.target.transform.position))
+        if (unit.target != null && unit.rangedRadiusController.IsWithinRangedRange(unit.target))
         {
             return true;
         }
@@ -545,6 +680,28 @@ public class IsCurrentTargetInRangedRange : ConditionBase
         }
     }
 }
+
+public class IsCurrentTargetInLineOfSight : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        if (unit.target != null && unit.rangedRadiusController.IsWithinLineOfSight(unit.target))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
 
 public class SetValidTarget : ActionBase
 {
@@ -557,6 +714,21 @@ public class SetValidTarget : ActionBase
     protected override TaskStatus OnUpdate()
     {
         unit.target = unit.actionRadiusController.GetClosestTarget();
+        return TaskStatus.Success;
+    }
+}
+
+public class SetValidTargetInLineOfSight : ActionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override TaskStatus OnUpdate()
+    {
+        unit.target = unit.actionRadiusController.GetClosestTargetInLineOfSight();
         return TaskStatus.Success;
     }
 }
@@ -657,7 +829,7 @@ public class AttackCurrentTarget : ActionBase
 
     protected override TaskStatus OnUpdate()
     {
-        Debug.Log($"{unit.name} attacked {unit.target.name}");
+        //Debug.Log($"{unit.name} attacked {unit.target.name}");
         if (unit.target.TryGetComponent<BG_UnitController>(out var targetUnit))
         {
             targetUnit.TakeDamage(1);

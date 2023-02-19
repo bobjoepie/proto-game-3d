@@ -17,16 +17,23 @@ public class BG_RangedRadiusController : MonoBehaviour
     private void Awake()
     {
         rangedRadius = GetComponent<SphereCollider>();
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
-    public bool IsWithinRangedRange(Vector3 target)
+    public bool IsWithinRangedRange(Transform target)
     {
-        var distance = Vector3.Distance(transform.root.position, target);
+        var distance = Vector3.Distance(transform.root.position, target.position);
         if (distance > rangedRadius.radius)
         {
             return false;
         }
         return true;
+    }
+
+    public bool IsWithinLineOfSight(Transform target)
+    {
+        var hasObstacleInLineOfSight = Physics.Linecast(transform.position, target.position, out var hits, LayerUtility.Only("Default"));
+        return !hasObstacleInLineOfSight;
     }
 
     private void OnDisable()

@@ -17,11 +17,12 @@ public class BG_MeleeRadiusController : MonoBehaviour
     private void Awake()
     {
         meleeRadius = GetComponent<SphereCollider>();
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
-    public bool IsWithinMeleeRange(Vector3 target)
+    public bool IsWithinMeleeRange(Transform target)
     {
-        var distance = Vector3.Distance(transform.root.position, target);
+        var distance = Vector3.Distance(transform.root.position, target.position);
         if (distance > meleeRadius.radius)
         {
             return false;

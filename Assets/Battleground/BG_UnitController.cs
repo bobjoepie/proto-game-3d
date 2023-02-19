@@ -10,8 +10,6 @@ using UnityEngine.AI;
 
 public class BG_UnitController : BG_EntityController
 {
-    #region Properties
-    
     public List<BG_UnitBehavior> unitBehaviors = new List<BG_UnitBehavior>();
     public NavMeshAgent agent;
     public Transform goal;
@@ -19,10 +17,6 @@ public class BG_UnitController : BG_EntityController
     public float behaviorFrequency = 1f;
 
     private CancellationTokenSource cancellationToken;
-
-    #endregion
-
-    #region System Methods
 
     private void OnEnable()
     {
@@ -33,72 +27,20 @@ public class BG_UnitController : BG_EntityController
     {
         behaviorTree = new BehaviorTreeBuilder(gameObject)
             .Selector()
-                .Selector("Handle Attacks")
-                    .Sequence("Handle Melee Attacks")
-                        .IsMelee()
-                        .HasCurrentTarget()
-                        .IsCurrentTargetInActionRadius()
-                        .IsCurrentTargetInMeleeRange()
-                        .AttackCurrentTarget()
-                    .End()
-                    .Sequence("Move To Melee Range")
-                        .IsMelee()
-                        .HasCurrentTarget()
-                        .Inverter().IsCurrentTargetInMeleeRange().End()
-                        .NavigateToTarget()
-                    .End()
-                    .Sequence("Handle Ranged Attacks")
-                        .IsRanged()
-                        .HasCurrentTarget()
-                        .IsCurrentTargetInActionRadius()
-                        .IsCurrentTargetInRangedRange()
-                        .StopMoving()
-                        .AttackCurrentTarget()
-                    .End()
-                    .Sequence("Move To Ranged Range")
-                        .IsRanged()
-                        .HasCurrentTarget()
-                        .Inverter().IsCurrentTargetInRangedRange().End()
-                        .NavigateToTarget()
-                    .End()
-                    .Sequence()
-                        .HasEntitiesInRange()
-                        .SetValidTarget()
-                        .AttackValidEntitiesInRange()
-                    .End()
-                .End()
-
-                .Selector("Handle Objectives")
-                    .Sequence("Handle Objective Tasks")
-                        .IsAtObjective()
-                        .PerformObjectiveTask()
-                    .End()
-
-                    .Sequence("Move To Objectives")
-                        .HasValidObjectives()
-                        .Inverter().IsAtObjective().End()
-                        .NavigateToObjective()
-                    .End()
-
-                    //.Sequence("Stop Moving To Objectives")
-                    //    .IsMovingToObjective()
-                    //    .StopMovingToObjective()
-                    //.End()
-                .End()
-
-                .Sequence("Handle Idle")
-                    .StopMoving()
-                    .BecomeIdle() 
-                .End()
+                .UnitHandleAttacks(gameObject)
+                .UnitHandleTargeting(gameObject)
+                .UnitHandleObjectives(gameObject)
+                .UnitHandleIdle(gameObject)
             .End()
             .Build();
+
         agent = GetComponent<NavMeshAgent>();
     }
 
     protected override void Start()
     {
         base.Start();
-        StartBehaviorLoop();
+        //StartBehaviorLoop();
     }
 
     private async UniTask BehaviorLoop(CancellationToken token = default)
@@ -144,9 +86,7 @@ public class BG_UnitController : BG_EntityController
 
     private void OnDisable()
     {
-        CancelBehaviorLoop();
+        //CancelBehaviorLoop();
         BG_EntityManager.Instance.Unregister(this);
     }
-
-    #endregion
 }
