@@ -35,7 +35,7 @@ MonoBehaviour:
     rangedAttacksPerSecond: 0.5
     actionRange: 10
     meleeRange: 0
-    rangedRange: 2
+    rangedRange: 8
     strength: 0
     dexterity: 0
     intelligence: 0

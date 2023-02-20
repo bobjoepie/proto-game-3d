@@ -31,10 +31,10 @@ MonoBehaviour:
     maxHealth: 10
     actionSpeed: 0
     moveSpeed: 0
-    meleeAttacksPerSecond: 0.1
+    meleeAttacksPerSecond: 1
     rangedAttacksPerSecond: 0
     actionRange: 10
-    meleeRange: 5
+    meleeRange: 2
     rangedRange: 0
     strength: 0
     dexterity: 0
