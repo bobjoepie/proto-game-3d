@@ -32,6 +32,7 @@ public class BG_PlayerTurnController : BG_TurnController, IInputController
         isWaitingForConfirmation = false;
 
         uiDocManager.hudOverlay.InitEndTurnButton(EndTurn);
+        uiDocManager.hudOverlay.DisableEndTurnButton();
     }
     
     void Update()
@@ -55,6 +56,7 @@ public class BG_PlayerTurnController : BG_TurnController, IInputController
 
     public override void EndTurn()
     {
+        uiDocManager.hudOverlay.DisableEndTurnButton();
         isCurrentTurn = false;
         isWaitingForConfirmation = false;
         cardManager.DiscardHand();
@@ -87,13 +89,6 @@ public class BG_PlayerTurnController : BG_TurnController, IInputController
         {
             HandleBuildingSelection(building);
         }
-        else if (hit.transform.root.TryGetComponent<BG_GridHandler>(out var gridHandler))
-        {
-            uiDocManager.hudOverlay.ClearButtonActions();
-            uiDocManager.hudOverlay.HidePanel(PanelType.Button);
-            if (selectedEntity != null) selectedEntity = selectedEntity.Deselect();
-            HandleGridSelection(gridHandler, hit);
-        }
     }
 
     private void HandleUnitSelection(BG_EntityController entity)
@@ -107,18 +102,6 @@ public class BG_PlayerTurnController : BG_TurnController, IInputController
         uiDocManager.hudOverlay.ShowPanel(PanelType.Button);
         uiDocManager.hudOverlay.InitButtons(building.LoadButtons());
         selectedEntity = building.Select();
-    }
-
-    private void HandleGridSelection(BG_GridHandler gridHandler, RaycastHit hit)
-    {
-        var localCoord = Vector3Int.FloorToInt(gridHandler.transform.InverseTransformPoint(hit.point));
-        var x = localCoord.x;
-        var y = localCoord.z;
-        var childName = "No Objects";
-        if (gridHandler.gridCells[x][y].transform.childCount > 0)
-        {
-            childName = gridHandler.gridCells[x][y].transform.GetChild(0).name;
-        }
     }
 
     private void CheckConfirmation()

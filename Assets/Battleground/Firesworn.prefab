@@ -166,10 +166,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213822909999971555}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5449812046528420530
 MonoBehaviour:
@@ -501,7 +501,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1812146977174891530
 MonoBehaviour:
@@ -1161,7 +1161,11 @@ MonoBehaviour:
     maxHealth: 0
     actionSpeed: 0
     moveSpeed: 0
-    attackSpeed: 0
+    meleeAttacksPerSecond: 0
+    rangedAttacksPerSecond: 0
+    actionRange: 0
+    meleeRange: 0
+    rangedRange: 0
     strength: 0
     dexterity: 0
     intelligence: 0
@@ -1172,7 +1176,8 @@ MonoBehaviour:
   agent: {fileID: 0}
   goal: {fileID: 0}
   target: {fileID: 0}
-  behaviorFrequency: 5
+  attackCooldown: 0
+  lastAttackedTime: 0
 --- !u!195 &5585056949790507049
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1194,7 +1199,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!54 &2097219858202284797
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,16 +11,11 @@ public class BG_UnitController : BG_EntityController
     public NavMeshAgent agent;
     public Transform goal;
     public Transform target;
-    public float behaviorFrequency = 1f;
 
-    private CancellationTokenSource cancellationToken;
+    public float attackCooldown;
+    public float lastAttackedTime;
 
     private void OnEnable()
-    {
-        BG_EntityManager.Instance.Register(this);
-    }
-
-    private void Awake()
     {
         behaviorTree = new BehaviorTreeBuilder(gameObject)
             .Selector()
@@ -34,40 +26,12 @@ public class BG_UnitController : BG_EntityController
             .End()
             .Build();
 
+        BG_EntityManager.Instance.Register(this);
+    }
+
+    private void Awake()
+    {
         agent = GetComponent<NavMeshAgent>();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        //StartBehaviorLoop();
-    }
-
-    private async UniTask BehaviorLoop(CancellationToken token = default)
-    {
-        while (!token.IsCancellationRequested)
-        {
-            await UniTask.NextFrame(token);
-            behaviorTree.Tick();
-            await UniTask.Delay(TimeSpan.FromSeconds(behaviorFrequency), cancellationToken: token);
-        }
-    }
-
-    public void StartBehaviorLoop()
-    {
-        if (cancellationToken != null)
-        {
-            CancelBehaviorLoop();
-        }
-        cancellationToken = new CancellationTokenSource();
-        BehaviorLoop(cancellationToken.Token).Forget();
-    }
-
-    public void CancelBehaviorLoop()
-    {
-        cancellationToken.Cancel();
-        cancellationToken.Dispose();
-        cancellationToken = null;
     }
 
     public override BG_EntityController Select()
@@ -86,7 +50,6 @@ public class BG_UnitController : BG_EntityController
 
     private void OnDisable()
     {
-        //CancelBehaviorLoop();
         BG_EntityManager.Instance.Unregister(this);
     }
 }

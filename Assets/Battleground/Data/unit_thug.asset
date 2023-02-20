@@ -23,21 +23,23 @@ MonoBehaviour:
   icon: {fileID: 0}
   attributes:
     name: 
-    tags: 33
+    tags: 0
     curLevel: 0
     curExperience: 0
     expToLevel: 0
-    curHealth: 0
-    maxHealth: 0
+    curHealth: 10
+    maxHealth: 10
     actionSpeed: 0
     moveSpeed: 0
-    attackSpeed: 0
+    meleeAttacksPerSecond: 0.1
+    rangedAttacksPerSecond: 0
+    actionRange: 10
+    meleeRange: 5
+    rangedRange: 0
     strength: 0
     dexterity: 0
     intelligence: 0
     luck: 0
     physRes: 0
     elemRes: 0
-  unitBehaviors:
-  - {fileID: 11400000, guid: b00efb28e5568c44cbc9b8512510a9bd, type: 2}
-  - {fileID: 11400000, guid: 0a869dbf6bdf05940bef7a7859acb708, type: 2}
+  unitBehaviors: []

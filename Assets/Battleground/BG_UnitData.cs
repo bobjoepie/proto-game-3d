@@ -11,7 +11,21 @@ public class BG_UnitData : BG_EntityData
     {
         BG_UnitController unitController = (BG_UnitController)entityController;
         base.ConvertData(unitController);
-        
+
+        unitController.lastAttackedTime = 0f;
+        if (attributes.meleeAttacksPerSecond > 0)
+        {
+            unitController.attackCooldown = 1f / attributes.meleeAttacksPerSecond;
+        }
+        else if (attributes.rangedAttacksPerSecond > 0)
+        {
+            unitController.attackCooldown = 1f / attributes.rangedAttacksPerSecond;
+        }
+        else
+        {
+            unitController.lastAttackedTime = Mathf.Infinity;
+        }
+
         unitController.unitBehaviors = this.unitBehaviors;
     }
 }

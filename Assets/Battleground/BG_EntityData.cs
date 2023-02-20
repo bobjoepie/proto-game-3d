@@ -30,14 +30,38 @@ public abstract class BG_EntityData : ScriptableObject
         entityController.selectionAudioClip = this.selectionAudioClip;
         entityController.portrait = this.portrait;
         entityController.icon = this.icon;
+        
+        entityController.attributes.name = this.attributes.name;
+        entityController.attributes.tags = this.attributes.tags;
+        entityController.attributes.curLevel = this.attributes.curLevel;
+        entityController.attributes.curExperience = this.attributes.curExperience;
+        entityController.attributes.expToLevel = this.attributes.expToLevel;
+        entityController.attributes.curHealth = this.attributes.curHealth;
+        entityController.attributes.maxHealth = this.attributes.maxHealth;
+        entityController.attributes.actionSpeed = this.attributes.actionSpeed;
+        entityController.attributes.moveSpeed = this.attributes.moveSpeed;
+        
+        entityController.attributes.meleeAttacksPerSecond = this.attributes.meleeAttacksPerSecond;
+        entityController.attributes.rangedAttacksPerSecond = this.attributes.rangedAttacksPerSecond;
 
-        entityController.attributes = this.attributes;
+        entityController.attributes.actionRange = this.attributes.actionRange;
+        entityController.attributes.meleeRange = this.attributes.meleeRange;
+        entityController.attributes.rangedRange = this.attributes.rangedRange;
+        
+        entityController.attributes.strength = this.attributes.strength;
+        entityController.attributes.dexterity = this.attributes.dexterity;
+        entityController.attributes.intelligence = this.attributes.intelligence;
+        entityController.attributes.luck = this.attributes.luck;
+
+        entityController.attributes.physRes = this.attributes.physRes;
+        entityController.attributes.elemRes = this.attributes.elemRes;
     }
 }
 
 [Serializable]
 public class BG_EntityAttributes
 {
+    [Header("Properties")]
     public string name;
     public BG_EntityTags tags;
     public int curLevel;
@@ -47,13 +71,23 @@ public class BG_EntityAttributes
     public int maxHealth;
     public int actionSpeed;
     public int moveSpeed;
-    public int attackSpeed;
 
+    [Header("Attack Speed")]
+    public float meleeAttacksPerSecond;
+    public float rangedAttacksPerSecond;
+
+    [Header("Range")]
+    public float actionRange;
+    public float meleeRange;
+    public float rangedRange;
+
+    [Header("Attributes")]
     public int strength;
     public int dexterity;
     public int intelligence;
     public int luck;
 
+    [Header("Resistances")]
     public int physRes;
     public int elemRes;
 }

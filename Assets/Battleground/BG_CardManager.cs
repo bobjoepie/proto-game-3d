@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class BG_CardManager : MonoBehaviour
@@ -65,11 +66,12 @@ public class BG_CardManager : MonoBehaviour
     {
         UniTask.Action(async () =>
         {
-            foreach (var card in hand)
+            foreach (var card in hand.ToList())
             {
                 uiDocManager.hudOverlay.InitCard(card, () => PlayCard(card));
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5f / hand.Count));
             }
+            uiDocManager.hudOverlay.EnableEndTurnButton();
         }).Invoke();
     }
 
@@ -87,14 +89,9 @@ public class BG_CardManager : MonoBehaviour
                 case BG_CardSummon cardSummon:
                     Action<Vector3> summon = pos =>
                     {
-                        var entity = cardSummon.unitData.entityGameObject;
-                        cardSummon.unitData.ConvertData(entity);
-                        var instance = Instantiate(entity, pos, Quaternion.identity);
-                        instance.attributes.tags |= BG_EntityTags.FactionPlayer;
-                        instance.attributes.tags |= BG_EntityTags.ObjectiveSeeker;
-                        instance.attributes.maxHealth = 10;
-                        instance.collisionLayer = LayerMask.GetMask("PlayerCollider");
-                        instance.actionRadiusLayer = LayerMask.GetMask("PlayerActionRadius");
+                        var tags = BG_EntityTags.FactionPlayer;
+                        tags |= BG_EntityTags.ObjectiveSeeker;
+                        cardSummon.Summon(pos, tags, "PlayerCollider", "PlayerActionRadius");
                         DiscardCard(card);
                     };
                     stateManager.QueuePlayerConfirmAction(summon);
@@ -130,10 +127,11 @@ public class BG_CardManager : MonoBehaviour
         discardPile.AddRange(hand.ToList());
         UniTask.Action(async () =>
         {
+            await UniTask.NextFrame();
             foreach (var card in hand)
             {
                 uiDocManager.hudOverlay.RemoveCard(card);
-                await UniTask.Delay(TimeSpan.FromSeconds(0.2f / hand.Count));
+                //await UniTask.Delay(TimeSpan.FromSeconds(0.2f / hand.Count));
             }
             hand.Clear();
         }).Invoke();

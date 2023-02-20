@@ -33,25 +33,7 @@ public class BG_EntityManager : MonoBehaviour
 
     private void Start()
     {
-        StartBehaviorLoopJob();
-    }
-
-    public void StartBehaviorLoopJob()
-    {
-
-    }
-
-    private async UniTask PerformAllUnitBehaviorsLoop(CancellationToken token = default)
-    {
-        while (!token.IsCancellationRequested)
-        {
-            await UniTask.NextFrame(token);
-            foreach (var unit in units)
-            {
-                unit.behaviorTree.Tick();
-            }
-            await UniTask.Delay(TimeSpan.FromSeconds(behaviorFrequency), cancellationToken: token);
-        }
+        StartBehaviorLoop();
     }
 
     public void StartBehaviorLoop()
@@ -62,6 +44,19 @@ public class BG_EntityManager : MonoBehaviour
         }
         cancellationToken = new CancellationTokenSource();
         PerformAllUnitBehaviorsLoop(cancellationToken.Token).Forget();
+    }
+
+    private async UniTask PerformAllUnitBehaviorsLoop(CancellationToken token = default)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            await UniTask.NextFrame(token);
+            foreach (var unit in units.ToList())
+            {
+                unit.behaviorTree.Tick();
+            }
+            await UniTask.Delay(TimeSpan.FromSeconds(behaviorFrequency), cancellationToken: token);
+        }
     }
 
     public void CancelBehaviorLoop()

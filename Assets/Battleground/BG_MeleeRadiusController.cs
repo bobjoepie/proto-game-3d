@@ -17,7 +17,16 @@ public class BG_MeleeRadiusController : MonoBehaviour
     private void Awake()
     {
         meleeRadius = GetComponent<SphereCollider>();
-        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        meleeRadius.isTrigger = true;
+    }
+
+    private void Start()
+    {
+        if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
+        {
+            meleeRadius.radius = entity.attributes.meleeRange;
+            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        }
     }
 
     public bool IsWithinMeleeRange(Transform target)

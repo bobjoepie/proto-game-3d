@@ -159,6 +159,26 @@ public class BG_HUD_Overlay : VisualElement
         }).Invoke();
     }
 
+    public void EnableEndTurnButton()
+    {
+        UniTask.Action(async () =>
+        {
+            await UniTask.NextFrame();
+            endTurnButton.SetEnabled(true);
+
+        }).Invoke();
+    }
+
+    public void DisableEndTurnButton()
+    {
+        UniTask.Action(async () =>
+        {
+            await UniTask.NextFrame();
+            endTurnButton.SetEnabled(false);
+
+        }).Invoke();
+    }
+
     public void Show()
     {
         UniTask.Action(async () =>

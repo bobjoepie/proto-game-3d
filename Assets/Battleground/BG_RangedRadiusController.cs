@@ -17,7 +17,16 @@ public class BG_RangedRadiusController : MonoBehaviour
     private void Awake()
     {
         rangedRadius = GetComponent<SphereCollider>();
-        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        rangedRadius.isTrigger = true;
+    }
+
+    private void Start()
+    {
+        if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            rangedRadius.radius = entity.attributes.rangedRange;
+        }
     }
 
     public bool IsWithinRangedRange(Transform target)

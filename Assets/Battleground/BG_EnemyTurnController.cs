@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BG_EnemyTurnController : BG_TurnController
 {
@@ -61,22 +62,11 @@ public class BG_EnemyTurnController : BG_TurnController
             switch (behavior)
             {
                 case BG_CardSummon cardSummon:
-                    var entity = cardSummon.unitData.entityGameObject;
-                    cardSummon.unitData.ConvertData(entity);
-                    
-                    var instance = Instantiate(entity, pos, Quaternion.identity);
-                    instance.attributes.tags |= BG_EntityTags.FactionEnemy;
-                    instance.attributes.tags |= BG_EntityTags.ObjectiveSeeker;
-                    instance.attributes.maxHealth = 10;
-                    instance.collisionLayer = LayerMask.GetMask("EnemyCollider");
-                    instance.actionRadiusLayer = LayerMask.GetMask("EnemyActionRadius");
+                    var tags = BG_EntityTags.FactionEnemy;
+                    tags |= BG_EntityTags.ObjectiveSeeker;
+                    cardSummon.Summon(pos, tags, "EnemyCollider", "EnemyActionRadius");
                     break;
             }
         }
-    }
-
-    public Vector3 GetSpawnableArea()
-    {
-        return Vector3.zero;
     }
 }

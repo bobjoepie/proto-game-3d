@@ -18,6 +18,7 @@ public static class BG_BehaviorRepository
             .Selector("Handle Attacks")
                 .Sequence("Perform Melee Attacks")
                     .IsMelee()
+                    .IsAttackReady()
                     .HasCurrentTarget()
                     .IsCurrentTargetInActionRadius()
                     .IsCurrentTargetInMeleeRange()
@@ -31,6 +32,7 @@ public static class BG_BehaviorRepository
                 .End()
                 .Sequence("Perform Ranged Attacks")
                     .IsRanged()
+                    .IsAttackReady()
                     .HasCurrentTarget()
                     .IsCurrentTargetInActionRadius()
                     .IsCurrentTargetInRangedRange()
@@ -38,10 +40,10 @@ public static class BG_BehaviorRepository
                     .StopMoving()
                     .AttackCurrentTarget()
                 .End()
-                .Sequence("Move To Ranged Range")
+                .Sequence("Move To Line Of Sight Range")
                     .IsRanged()
                     .HasCurrentTarget()
-                    .Inverter().IsCurrentTargetInRangedRange().End()
+                    .Inverter().IsCurrentTargetInLineOfSight().End()
                     .NavigateToTarget()
                 .End()
             .End();
@@ -63,6 +65,10 @@ public static class BG_BehaviorRepository
                     .HasEntitiesInRange()
                     .SetValidTarget()
                 .End()
+                .Sequence("Try Move To Any Target")
+                    .HasEntitiesInRange()
+                    .SetValidTarget()
+                .End()
             .End();
         return builder.Splice(injectTree.Build());
     }
@@ -75,7 +81,6 @@ public static class BG_BehaviorRepository
                     .IsAtObjective()
                     .PerformObjectiveTask()
                 .End()
-
                 .Sequence("Move To Objectives")
                     .HasValidObjectives()
                     .Inverter().IsAtObjective().End()
@@ -326,6 +331,15 @@ public static class BG_BehaviorRepository
         });
     }
 
+    public static BehaviorTreeBuilder IsAttackReady(this BehaviorTreeBuilder builder,
+        string name = "Is Attack Ready")
+    {
+        return builder.AddNode(new IsAttackReady()
+        {
+            Name = name,
+        });
+    }
+
     #endregion
 
     #region Custom Sequences
@@ -492,7 +506,7 @@ public class HasEntitiesInRange : ConditionBase
     
     protected override bool OnUpdate()
     {
-        if (unit.actionRadiusController.GetClosestTarget() != null)
+        if (unit.actionRadiusController != null && unit.actionRadiusController.GetClosestTarget() != null)
         {
             return true;
         }
@@ -702,6 +716,27 @@ public class IsCurrentTargetInLineOfSight : ConditionBase
     }
 }
 
+public class IsAttackReady : ConditionBase
+{
+    BG_UnitController unit;
+    protected override void OnInit()
+    {
+        unit = Owner.GetComponent<BG_UnitController>();
+    }
+
+    protected override bool OnUpdate()
+    {
+        var attackReadyTime = unit.lastAttackedTime + unit.attackCooldown;
+        if (Time.time >= attackReadyTime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
 
 public class SetValidTarget : ActionBase
 {
@@ -759,6 +794,7 @@ public class NavigateToObjective : ActionBase
     protected override TaskStatus OnUpdate()
     {
         unit.goal = BG_EntityManager.Instance.GetClosestOpposingObjective(unit);
+        unit.agent.enabled = true;
         unit.agent.SetDestination(unit.goal.position);
         unit.animator.ChangeAnimationState("Walk");
         return TaskStatus.Success;
@@ -829,16 +865,18 @@ public class AttackCurrentTarget : ActionBase
 
     protected override TaskStatus OnUpdate()
     {
-        //Debug.Log($"{unit.name} attacked {unit.target.name}");
+        Debug.Log($"{unit.name} attacked {unit.target.name}");
         if (unit.target.TryGetComponent<BG_UnitController>(out var targetUnit))
         {
             targetUnit.TakeDamage(1);
+            unit.lastAttackedTime = Time.time;
             unit.animator.PlayAnimationStateOneShot("Attack");
             return TaskStatus.Success;
         }
         else if (unit.target.TryGetComponent<BG_BuildingController>(out var targetBuilding))
         {
             targetBuilding.TakeDamage(1);
+            unit.lastAttackedTime = Time.time;
             unit.animator.PlayAnimationStateOneShot("Attack");
             return TaskStatus.Success;
         }
@@ -887,7 +925,11 @@ public class StopMoving : ActionBase
 
     protected override TaskStatus OnUpdate()
     {
-        unit.agent.ResetPath();
+        if (unit.agent.enabled)
+        {
+            unit.agent.isStopped = true;
+            unit.agent.ResetPath();
+        }
         return TaskStatus.Success;
     }
 }

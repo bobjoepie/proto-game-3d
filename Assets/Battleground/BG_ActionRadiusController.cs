@@ -14,17 +14,8 @@ public class BG_ActionRadiusController : MonoBehaviour
     public float autoSortFrequency = 5f;
 
     private CancellationTokenSource cancellationToken;
-    private SphereCollider sphereCollider;
+    private SphereCollider actionRadius;
 
-    private void Awake()
-    {
-        if (autoSortEnabled)
-        {
-            StartAutoSortTargets();
-        }
-
-        sphereCollider = GetComponent<SphereCollider>();
-    }
     private void OnEnable()
     {
         if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
@@ -33,11 +24,23 @@ public class BG_ActionRadiusController : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (autoSortEnabled)
+        {
+            StartAutoSortTargets();
+        }
+
+        actionRadius = GetComponent<SphereCollider>();
+        actionRadius.isTrigger = true;
+    }
+
     private void Start()
     {
         if (transform.root.TryGetComponent<BG_EntityController>(out var entity))
         {
             gameObject.layer = entity.actionRadiusLayer.ToLayer();
+            actionRadius.radius = entity.attributes.actionRange;
         }
     }
 
@@ -78,7 +81,7 @@ public class BG_ActionRadiusController : MonoBehaviour
 
     public void FillTargets()
     {
-        List<Collider> colliders = Physics.OverlapSphere(transform.position, sphereCollider.radius, gameObject.layer).ToList();
+        List<Collider> colliders = Physics.OverlapSphere(transform.position, actionRadius.radius, gameObject.layer).ToList();
         storedTargets = colliders.Select(c => c.transform).ToList();
     }
 
@@ -143,8 +146,7 @@ public class BG_ActionRadiusController : MonoBehaviour
         var target = storedTargets.Where(c =>
             {
                 if (c == null) return false;
-                var hasObstacleInLineOfSight = Physics.Linecast(origin, c.position, out var hits, LayerUtility.Only("Default"));
-                //if (hasObstacleInLineOfSight) Debug.Log($"{transform.root.name} blocked by {hits.transform.name} trying to hit {c.name}");
+                var hasObstacleInLineOfSight = Physics.Linecast(origin, c.position, LayerUtility.Only("Default"));
                 return !hasObstacleInLineOfSight;
             })
             .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
@@ -156,7 +158,7 @@ public class BG_ActionRadiusController : MonoBehaviour
     public List<Transform> GetClosestTargetsInLineOfSight(int num)
     {
         var origin = transform.root.position;
-        var targets = storedTargets.Where(c => c != null && Physics.Raycast(origin, c.position, sphereCollider.radius, LayerUtility.Only("Default")))
+        var targets = storedTargets.Where(c => c != null && Physics.Raycast(origin, c.position, actionRadius.radius, LayerUtility.Only("Default")))
             .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
             .Take(num)
             .ToList();

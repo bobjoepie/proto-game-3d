@@ -27,11 +27,15 @@ MonoBehaviour:
     curLevel: 0
     curExperience: 0
     expToLevel: 0
-    curHealth: 0
-    maxHealth: 0
+    curHealth: 5
+    maxHealth: 5
     actionSpeed: 0
     moveSpeed: 0
-    attackSpeed: 0
+    meleeAttacksPerSecond: 0
+    rangedAttacksPerSecond: 0.5
+    actionRange: 10
+    meleeRange: 0
+    rangedRange: 2
     strength: 0
     dexterity: 0
     intelligence: 0

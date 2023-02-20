@@ -357,7 +357,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1737936315858887852
 MonoBehaviour:
@@ -416,7 +416,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &908545265465290351
 MonoBehaviour:
@@ -1290,20 +1290,23 @@ MonoBehaviour:
     maxHealth: 0
     actionSpeed: 0
     moveSpeed: 0
-    attackSpeed: 0
+    meleeAttacksPerSecond: 0
+    rangedAttacksPerSecond: 0
+    actionRange: 0
+    meleeRange: 0
+    rangedRange: 0
     strength: 0
     dexterity: 0
     intelligence: 0
     luck: 0
     physRes: 0
     elemRes: 0
-  unitBehaviors:
-  - {fileID: 11400000, guid: b00efb28e5568c44cbc9b8512510a9bd, type: 2}
-  - {fileID: 11400000, guid: 0a869dbf6bdf05940bef7a7859acb708, type: 2}
+  unitBehaviors: []
   agent: {fileID: 0}
   goal: {fileID: 0}
   target: {fileID: 0}
-  behaviorFrequency: 5
+  attackCooldown: 0
+  lastAttackedTime: 0
 --- !u!195 &6359043905655292492
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1325,7 +1328,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!54 &623490509392810136
 Rigidbody:
   m_ObjectHideFlags: 0
